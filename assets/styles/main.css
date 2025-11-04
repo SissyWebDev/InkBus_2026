@@ -1,7 +1,6 @@
-/*DEBUGGER */
-/** {
-  outline: 1px solid red;
-}*/
+*{
+  outline: 5px solid red;
+}
 
 /***************************************************/
 /********UNIVERSAL STYLES: ACROSS ALL PAGES*********/
@@ -20,6 +19,7 @@
 
 html {
   scroll-behavior: smooth;
+  height: 100%;
 }
 
 * {
@@ -30,7 +30,6 @@ html {
 
 body {
   width: auto;
-  height: 100%;
   margin: 0;
   padding: 0;
   font-family: var(--font-family);
@@ -91,12 +90,12 @@ a:hover {
 /*specific to navigation pages*/
 nav {
   display: flex;
-  justify-content: center;
   align-items: center;
   height: calc(55vh - 10px);
   margin-left: auto;
   margin-right: auto;
   max-width: 88%;
+  justify-content: center;
 }
 
 iframe {
@@ -210,7 +209,6 @@ footer a:hover {
 #inkbus-main-header-image {
   display: flex;
   flex-direction: column;
-  flex-basis: 100%;
   justify-content: center;
   gap: 3%;
   width: 100%;
@@ -351,7 +349,9 @@ h2 {
 /*****************mobile.html********************/
 .mobile-background {
   background: linear-gradient(to bottom, #020104, #6032c8);
-  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  min-height: 100%;  /* Matches your site design */
 }
 
 .inkbus-mobile-header-image {
@@ -379,21 +379,52 @@ h2 {
   position: relative;
 }
 
+/* Page-specific fix for mobile.html navigation page */
+
+
+body:not(.mobile-background) {
+  /* min-height: 100%; */  /* Only apply to non-navigation pages */
+}
+
+/* Grid navigation - 5 columns that flex together */
+.mobile-nav {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  max-width: 80%;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+/* Hide anchor tags containing mini-size images by default */
+.mobile-nav a:has(.mini-size) {
+  display: none;
+}
+
+.mobile-nav a {
+  display: block;
+  width: 100%;
+}
+
 .mobile-nav-img {
-  height: 40vh;
-  width: auto;
-  transition: transform 0.5s ease-in-out;
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s ease-in-out, filter 0.3s ease;
   border: 5px solid var(--grape);
   border-radius: 14px;
-  margin: 0 5px;
+  display: block;
 }
 
 .mobile-nav-img:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
+  filter: brightness(110%);
 }
 
+/* Image size control */
 .full-size {
-  display: initial;
+  display: block;
 }
 
 .mini-size {
@@ -606,8 +637,24 @@ h2 {
   color: var(--magenta);
 }
 
+/* Grid container replaces nested flexboxes */
+.mobile-calendar-grid {
+  display: grid;
+  grid-template-columns: minmax(280px, 1fr) 2.5fr;
+  gap: 3%;
+  align-items: start;
+}
+
 .mobile-calendar-flash-aside {
-  flex: 1 0 20%;
+  width: 100%;
+}
+
+.mobile-calendar-flash-aside img,
+.mobile-calendar-flash-aside input[type="image"] {
+  width: 100%;
+  height: auto;
+  display: block;
+  cursor: pointer;
 }
 
 .mobile-calendar-flash-aside:hover {
@@ -615,27 +662,26 @@ h2 {
 }
 
 .mobile-calendar-float {
-  flex: 1 0 66%;
-  margin-left: 5%;
-}
-
-.mobile-calendar-float div iframe {
-  width: 45rem;
-  height: 30rem;
-  margin: 0 auto;
-}
-
-.mobile-calendar-float div {
-  position: relative;
-  display: block;
   width: 100%;
 }
 
-/*.mobile-calendar-insta-box {
-  align-items: flex-start;
-  max-width: 88%;
-  justify-content: center;
-}*/
+/* Responsive iframe container */
+.calendar-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 66.67%; /* 2:3 aspect ratio */
+  height: 0;
+  overflow: hidden;
+}
+
+.calendar-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
 
 .mobile-calendar-insta {
   margin-top: 5%;
@@ -687,7 +733,9 @@ h2 {
 
 .mothership-background {
   background: linear-gradient(to bottom, #020104, #6032c8);
-  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  min-height: 100%;  /* Matches your site design */
 }
 
 .inkbus-temp-mom-header-image {
@@ -807,26 +855,46 @@ h2 {
 /****************MEDIA QUERIES*******************/
 /************************************************/
 
-/*****controlling the many changes needed for g-cal embed****/
-@media screen and (max-width: 1237px) {
-  .mobile-calendar-flash-aside input {
-    width: 30vw;
-    height: auto;
+/* Large desktop - more spacing for mobile-nav */
+@media screen and (min-width: 1400px) {
+  .mobile-nav {
+    gap: 3rem;
   }
+}
 
-  .mobile-calendar-float div iframe {
-    width: 35rem;
+
+@media screen and (max-width: 1237px) {
+/*****controlling the many changes needed for g-cal embed****/
+.mobile-calendar-grid {
+    gap: 2%;
+  }
+  
+  .calendar-wrapper {
+    padding-bottom: 70%; /* Slightly taller ratio for mid-size screens */
   }
 
   /*Mothership Sizzle Reel*/
    #mothership-video-container {
     max-width: calc(100vw - 400px); /* Account for side image space */
   }
+  /*mobile.html adjustments*/
+  .mobile-nav {
+    gap: 1.5rem;
+  }
 }
 
 @media screen and (max-width: 998px) {
-  .mobile-calendar-float div iframe {
-    width: 25rem;
+  /*adjusting mobile.html*/
+  .mobile-nav {
+    gap: 1.2rem;
+    max-width: 95%;
+  }
+  .mobile-calendar-title {
+    font-size: 2.5rem;
+  }
+  
+  .calendar-wrapper {
+    padding-bottom: 75%;
   }
 
   /*Mothership Sizzle Reel*/
@@ -836,29 +904,6 @@ h2 {
   
   .side-image {
     height: calc(300px * 16 / 9); /* Adjust side images to match */
-  }
-}
-
-@media screen and (max-width: 450px) {
-  #mobile-calender-height-calc {
-    flex-direction: column;
-  }
-
-  .mobile-calendar-float {
-    margin: 2% auto;
-  }
-
-  .mobile-calendar-float div iframe {
-    width: 20rem;
-  }
-
-  .mobile-calendar-flash-aside {
-    margin: 2% auto;
-  }
-
-  .mobile-calendar-flash-aside input {
-    width: 80vw;
-    height: auto;
   }
 }
 
@@ -944,17 +989,9 @@ h2 {
   }
 
   .mobile-nav {
-    height: 150vh;
+    gap: 1rem;
   }
 
-  .mobile-nav-img {
-    height: auto;
-  }
-
-  .mobile-nav-img:hover {
-    transform: initial;
-    filter: brightness(150%);
-  }
 
   /*Stylings related to aboutMobile.html*/
   #mobile-about-height-calc {
@@ -1045,16 +1082,26 @@ h2 {
   }
 
   /*Stylings relating to eventCalendar.html*/
-  #mobile-calender-height-calc {
-    height: auto;
+   .mobile-calendar-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
   }
-
+  
+  .mobile-calendar-title {
+    font-size: 2rem;
+  }
+  
+  .mobile-calendar-title-box {
+    margin-bottom: 3%;
+  }
+  
   .mobile-calendar-flash-aside {
-    pointer-events: none;
+    max-width: 400px;
+    margin: 0 auto;
   }
-
-  .mobile-calendar-flash-box {
-    flex-direction: inherit;
+  
+  .calendar-wrapper {
+    padding-bottom: 80%;
   }
 
   /*Stylings relating to innerPortraits.html*/
@@ -1100,5 +1147,44 @@ h2 {
   }
    .side-image {
     display: none;
+  }
+
+  /* Mobile.html - switch to single column with mini images */
+@media screen and (max-width: 550px) {
+.mobile-nav {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    max-width: 95%;
+  }
+  
+  /* Hide full-size anchor tags, show mini-size anchor tags */
+  .mobile-nav a:has(.full-size) {
+    display: none;
+  }
+  
+  .mobile-nav a:has(.mini-size) {
+    display: block;
+  }
+}
+/* Small mobile phones */
+@media screen and (max-width: 450px) {
+  .mobile-calendar-title {
+    font-size: 1.75rem;
+  }
+  
+  .mobile-calendar-subtitle {
+    font-size: 1rem;
+  }
+  
+  .mobile-calendar-flash-aside {
+    max-width: 90%;
+  }
+  
+  .calendar-wrapper {
+    padding-bottom: 100%; /* More square on very small screens */
+  }
+  
+  .mobile-calendar-insta {
+    margin-top: 3%;
   }
 }
