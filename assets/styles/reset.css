@@ -1,8 +1,55 @@
+/* Remove all animations and transitions for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+ html:focus-within {
+  scroll-behavior: auto;
+ }
+
+ *,
+ *::before,
+ *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+ }
+}
+
 /* Box sizing rules */
 *,
 *::before,
 *::after {
  box-sizing: border-box;
+}
+
+/* Focus visible for keyboard navigation */
+*:focus-visible {
+  outline: 3px solid var(--magenta);
+  outline-offset: 3px;
+}
+
+/* Remove default focus styles to avoid double outlines */
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  *:focus-visible {
+    outline: 3px solid;
+  }
+}
+
+/* Screen reader only content */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }
 
 /* Remove default margin */
@@ -20,9 +67,10 @@ dd {
 }
 
 /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
-ul[role="list"],
-ol[role="list"] {
- list-style: none;
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+  padding: 0;
 }
 
 /* Set core root defaults */
@@ -50,25 +98,18 @@ picture {
 }
 
 /* Inherit fonts for inputs and buttons */
-input,
+/* Better touch targets for mobile */
 button,
-textarea,
-select {
- font: inherit;
+a,
+input,
+select,
+textarea {
+  font: inherit;
+  min-height: 44px;
+  border-color: transparent;
 }
 
-/* Remove all animations and transitions for people that prefer not to see them */
-@media (prefers-reduced-motion: reduce) {
- html:focus-within {
-  scroll-behavior: auto;
- }
-
- *,
- *::before,
- *::after {
-  animation-duration: 0.01ms !important;
-  animation-iteration-count: 1 !important;
-  transition-duration: 0.01ms !important;
-  scroll-behavior: auto !important;
- }
+/* Prevent text overflow */
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
 }

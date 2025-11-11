@@ -1,72 +1,81 @@
-*{
-  outline: 5px solid red;
-}
+/***************************************************/
+/********** INKBUS TATTOO - MAIN STYLESHEET *******/
+/***************************************************/
+/* Mobile-first approach with standard breakpoints:
+ * Small (sm):  576px  - Tablets portrait
+ * Medium (md): 768px  - Tablets landscape  
+ * Regular (rg): 992px  - Desktops
+ * Large (lg):   1200px - Large desktops
+ * X-Large (xl): 1750px - Extra Large desktops
+ */
 
 /***************************************************/
-/********UNIVERSAL STYLES: ACROSS ALL PAGES*********/
-/*Specific styles are labeled by Page Name below*/
+/********** CSS CUSTOM PROPERTIES ******************/
+/***************************************************/
+
 :root {
+  /* Typography */
   --font-family: lulo-one, Helvetica, sans-serif;
+
+  /* Brand Colors */
   --grape: rgb(137, 69, 246);
   --magenta: rgb(235, 87, 247);
   --lavender: rgb(204, 138, 248);
-  --aluminum: rgb(169, 169, 169);
   --lt-lavender: rgb(220, 190, 255);
   --dk-lavender: rgb(50, 0, 100);
+  --aluminum: rgb(169, 169, 169);
   --white: #fff;
   --black: #000;
+
+  /* Spacing */
+  --header-height-mobile: 15vh;
+  --header-height-desktop: 25vh;
+  --border-radius: 14px;
+  --border-width: 5px;
+
+  /* All Image Borders */
+  --image-border: var(--border-width) solid var(--grape);
 }
+
+/***************************************************/
+/********** BASE STYLES (MOBILE FIRST) ************/
+/***************************************************/
 
 html {
   scroll-behavior: smooth;
   height: 100%;
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
 body {
-  width: auto;
+  width: 100%;
   margin: 0;
   padding: 0;
   font-family: var(--font-family);
+  /* Note: min-height: 100vh comes from reset.css */
 }
 
-/*Centers Images*/
+/* Images */
 img {
   margin: 0 auto;
-  border-radius: 8px;
+  border-radius: var(--border-radius);
+  border: var(--border-width) solid var(--grape);
+  height: auto;
+  max-width: 100%;
 }
 
-.working-on-it {
-  width: auto;
-  height: 100%;
-}
-.mothership-flyer {
-  width: auto;
-  height: 100%;
-  display: block;
-}
-
-/*Made to hold single images for flex control*/
-.global-image-container {
-  padding: 0.5%;
-}
-
-/*Made as a global flex container for content*/
-.flex-box {
-  display: flex;
+/* Typography */
+h1,
+h2,
+h3 {
+  font-family: var(--font-family);
+  color: var(--white);
+  margin: 0;
 }
 
 h3 {
-  font-family: var(--font-family);
   margin: 2% auto;
   font-size: 2em;
   text-align: center;
-  color: var(--white);
 }
 
 p,
@@ -79,599 +88,1087 @@ h6 {
   color: var(--white);
 }
 
+/* Links */
 a {
   color: var(--aluminum);
+  text-decoration: none;
 }
 
 a:hover {
   color: var(--magenta);
 }
 
-/*specific to navigation pages*/
-nav {
+/***************************************************/
+/********** INDEX.HTML - MAIN HOMEPAGE ************/
+/***************************************************/
+
+/* Background */
+.main-background {
+  background: linear-gradient(to bottom, #8945f6, #eb57f7);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+.inkbus-main-nav,
+.mobile-nav-items-main {
+  padding-bottom: 1.5em;
+}
+
+/* Header with sticky positioning */
+#inkbus-main-header-image {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3%;
+  width: 100%;
+  height: var(--header-height-mobile);
+  position: sticky;
+  top: 0;
+  background-image: url("https://res.cloudinary.com/diyrbemqw/image/upload/v1681080983/inkbus-tattoo-main/inkbusMainHeader_mo7kog.webp");
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow: 0 7px var(--lavender), 0 14px var(--grape), 0 21px var(--lavender);
+  z-index: 100;
+  margin-bottom: 21px;
+  /* width of 3-strip box-shadow */
+}
+
+#inkbus-main-header-image:hover {
+  filter: brightness(200%);
+}
+
+/* Header images (logo, subtitle) */
+#header-title,
+#header-subtitle {
+  width: auto;
+  max-width: 90%;
+}
+
+/* Main Navigation Container */
+.inkbus-main-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  width: 100%;
+  max-width: 100%;
+  /* Full width on mobile for bigger buttons */
+  margin: 0 auto;
+  min-height: calc(100vh - var(--header-height-mobile) - 150px);
+  /* Account for header and footer */
+}
+
+/* Navigation buttons (images) */
+.main-nav-btn {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  transition: transform 0.3s ease-in-out, filter 0.3s ease;
+  border: var(--border-width) solid var(--grape);
+  border-radius: var(--border-radius);
+}
+
+/* Mobile: Show mini images, hide full-size */
+.main-nav-btn.full-size {
+  display: none;
+}
+
+.main-nav-btn.mini-size {
+  display: block;
+}
+
+/* Hover effect on mobile */
+.main-nav-btn:hover,
+.main-nav-btn:focus {
+  filter: brightness(150%);
+}
+
+/* Hover class for other pages */
+.hoverable:hover {
+  filter: brightness(150%);
+}
+
+/***************************************************/
+/********** FOOTER (Nav View) ***********************/
+/***************************************************/
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+  background-color: var(--black);
+  color: var(--white);
+  padding: 1rem;
+  box-shadow: 0 -7px var(--lavender), 0 -14px var(--grape), 0 -21px var(--lavender);
+  font-size: 1em;
+  line-height: 1;
+  position: relative;
+}
+
+#footer-left-side {
   display: flex;
   align-items: center;
-  height: calc(55vh - 10px);
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 88%;
+  width: 100%;
+  justify-content: space-between;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+#footer-left-side p {
+  color: var(--lavender);
+  font-weight: 500;
+}
+
+.footer-quote {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  width: 100%;
   justify-content: center;
 }
 
-iframe {
-  margin: 2%;
+.footer-quote p {
+  color: var(--magenta);
+  font-weight: 700;
+  font-style: italic;
 }
 
-.main-nav-btn {
-  height: 40vh;
-  width: auto;
-  transition: transform 0.5s ease-in-out;
-  border: 5px solid var(--grape);
-  border-radius: 14px;
-  margin: 0 10px;
-}
-
-.main-nav-btn:hover {
-  transform: scale(1.1);
-}
-
-footer {
+#footer-right-side {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   align-items: center;
   width: 100%;
-  background-color: #000;
-  color: #fff;
-  position: fixed;
-  bottom: 0;
-  margin-top: 5%;
-  padding: 1% 5%;
-  box-shadow: 0 -7px #cc8af8, 0 -14px #8945f6, 0 -21px #cc8af8;
-  z-index: 1;
+  justify-content: space-between;
+  position: relative;
+  flex-direction: column;
+  gap: 0.25rem;
 }
 
-footer a {
-  color: #cc8af8;
+#footer-right-side a {
+  color: var(--lt-lavender);
+  min-height: auto;
 }
 
-footer a:hover {
-  color: #eb57f7;
+/* Style the label to look like a link */
+#thank-you-egg {
+  color: var(--lavender);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+#thank-you-egg:hover {
+  color: var(--magenta);
 }
 
 .footer-nav {
-  text-align: center;
-  font-weight: 700;
+  position: relative;
   display: flex;
+  gap: 0.5rem;
+  font-weight: 700;
+  justify-content: center;
   flex-wrap: wrap;
+  flex-direction: column;
 }
 
 .footer-nav a {
   padding: 0 5px;
   color: var(--magenta);
+  min-height: auto;
+  text-align: center;
+  transition: opacity 0.5s ease;
 }
 
 .footer-nav a:hover {
   color: var(--lavender);
 }
 
-.footer-quote {
-  text-align: center;
-  font-weight: 700;
+/* Hide checkbox */
+.easter-egg-checkbox {
+  display: none;
 }
 
-.footer-quote p {
-  color: var(--magenta);
+/* Easter Egg GIF - Desktop */
+.easter-egg-gif {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+  max-width: 200px;
+  z-index: 10;
 }
 
-.footer-left-side {
-  font-weight: 500;
-  text-align: center;
+.easter-egg-gif img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
-.footer-left-side p {
-  color: var(--lavender);
-}
-
-.footer-right-side {
+/* Mobile overlay - hidden by default */
+.easter-egg-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--grape);
   display: flex;
-  align-items: flex-end;
-  flex-direction: column;
-  color: var(--lavender);
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
 }
 
-/*******************Curator Instagram feed***********/
+.easter-egg-overlay img {
+  max-width: 90%;
+  max-height: 80%;
+  object-fit: contain;
+}
+
+.easter-egg-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 2.5rem;
+  color: white;
+  padding: 0;
+  line-height: 1;
+  z-index: 10000;
+}
+
+.easter-egg-close:hover {
+  transform: scale(1.1);
+  transition: transform 0.2s ease;
+}
+
+
+
+
+/***************************************************/
+/********** UTILITY CLASSES ***********************/
+/***************************************************/
+
+/* Generic image container */
+.global-image-container {
+  padding: 0.5%;
+}
+
+/********** MEDIA QUERIES: COMPACT (376px-) ******/
+
+@media screen and (max-width: 376px) {}
+
+/***************************************************/
+/********** MEDIA QUERIES: TABLET (576px) *********/
+/***************************************************/
+
+/* Mobile: Show overlay when checkbox is checked */
+@media (max-width: 575px) {
+  .easter-egg-gif {
+    display: none;
+  }
+
+  .easter-egg-checkbox:checked~.easter-egg-overlay {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+@media screen and (min-width: 576px) {
+
+  /* Navigation - Start showing side-by-side layout */
+  .inkbus-main-nav {
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    max-width: 95%;
+    /* Constrain width on tablets */
+  }
+
+  .main-nav-btn {
+    max-width: 350px;
+    height: 30vh;
+  }
+
+  /* Footer - Start horizontal layout */
+  footer {
+    flex-direction: row;
+    padding: 1.5rem;
+    /* Slightly larger on tablets */
+  }
+
+  #footer-left-side {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #footer-left-side :nth-child(1) {
+    font-size: smaller;
+  }
+
+  .footer-nav {
+    flex-direction: column;
+    /* Force vertical stacking */
+    align-items: center;
+    /* Center items horizontally */
+    flex-wrap: nowrap;
+    width: 100%;
+  }
+
+  #footer-right-side {
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+  }
+
+  #footer-right-side a:hover {
+    color: var(--grape);
+    min-height: auto;
+  }
+
+  #footer-right-side a:nth-of-type(2) {
+    font-size: smaller;
+  }
+
+  #thank-you-egg {
+    padding: 0;
+    font-size: large;
+  }
+
+  /* Override for when there's a label before the email */
+  #footer-right-side:has(#thank-you-egg) :nth-child(3) {
+    font-size: smaller;
+  }
+
+  .easter-egg-checkbox,
+  .easter-egg-overlay {
+    display: none !important;
+  }
+
+  footer:has(#thank-you-egg:hover) .footer-nav a {
+    opacity: 0;
+  }
+
+  footer:has(#thank-you-egg:hover) .easter-egg-gif {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+#footer-right-side#thank-you-egg {
+  font-size: revert;
+}
+
+/***************************************************/
+/********** MEDIA QUERIES: MEDIUM (768px) *********/
+/***************************************************/
+
+@media screen and (min-width: 768px) {
+
+  /* Header grows larger */
+  #inkbus-main-header-image {
+    height: 20vh;
+  }
+
+  /* Navigation */
+  .inkbus-main-nav {
+    flex-direction: row;
+    gap: 2rem;
+    min-height: calc(100vh - 20vh - 150px);
+  }
+
+  .main-nav-btn {
+    max-width: 380px;
+    height: 35vh;
+  }
+
+  /* Show footer quote */
+  .footer-quote {
+    flex-direction: row;
+  }
+
+  .footer-quote p {
+    padding: 0 2px;
+  }
+
+  /* Footer becomes fixed at bottom */
+  footer {
+    padding: 5%;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+}
+
+/***************************************************/
+/********** MEDIA QUERIES: Desktop (992px) **********/
+/***************************************************/
+
+@media screen and (min-width: 992px) {
+
+  /* Header at full desktop size */
+  #inkbus-main-header-image {
+    height: var(--header-height-desktop);
+  }
+
+  /* Navigation */
+  .inkbus-main-nav {
+    gap: 2.5rem;
+    max-width: 88%;
+    min-height: calc(100vh - var(--header-height-desktop) - 100px);
+  }
+
+  /* Switch to full-size images, hide mini */
+  .main-nav-btn.full-size {
+    display: block;
+  }
+
+  .main-nav-btn.mini-size {
+    display: none;
+  }
+
+  .main-nav-btn {
+    max-width: 400px;
+    height: 40vh;
+    width: auto;
+  }
+
+  /* Desktop hover effect: scale instead of brightness */
+  .main-nav-btn:hover,
+  .main-nav-btn:focus {
+    transform: scale(1.1);
+    filter: none;
+  }
+
+  /* Footer - Larger text on desktop */
+  footer {
+    font-size: 1.15em;
+    padding: 1.5rem 3rem;
+  }
+}
+
+/***************************************************/
+/********** MEDIA QUERIES: Large (1200px) **********/
+/***************************************************/
+
+@media screen and (min-width: 1200px) {
+
+  /* More spacing on large screens */
+  .inkbus-main-nav {
+    gap: 3rem;
+  }
+
+  .main-nav-btn {
+    max-width: 450px;
+  }
+}
+
+/***************************************************/
+/********* MEDIA QUERIES: X-Large (1750px) *********/
+/***************************************************/
+
+@media screen and (min-width: 1750px) {
+  #inkbus-main-header-image {
+    background-position-y: bottom;
+  }
+}
+
+/***************************************************/
+/********** CURATOR INSTAGRAM FEED ****************/
+/***************************************************/
 
 .crt-widget .crt-load-more {
   color: var(--aluminum) !important;
-  border: 2px solid var(--lavender) !important;
-  border-radius: 14px;
+  border: var(--border-width) solid var(--grape) !important;
+  border-radius: var(--border-radius);
+  padding: 25px 45px;
 }
 
 .crt-load-more:hover {
   color: var(--magenta) !important;
 }
 
-/*******************************************************/
-/********PAGE SPECIFIC STYLES:**************************/
-/*******************************************************/
+.crt-image-c img {
+  border: none;
+}
 
 /***************************************************/
-/******INKBUS Tattoo Page and Associated Pages******/
+/*********** ABOUT US (aboutInkBus.html) ***********/
+/** (From Footer Nav of index.html & mobile.com) ***/
 /***************************************************/
 
-/***********index.html***************/
+/* Mobile-first base styles */
+
+/* About page specific body background */
 .main-background {
-  background: linear-gradient(to bottom, #8945f6, #eb57f7);
-  background-repeat: no-repeat;
-}
-
-#inkbus-main-header-image {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 3%;
-  width: 100%;
-  height: 25vh;
-  position: sticky;
-  top: 0;
-  background-image: url("https://res.cloudinary.com/diyrbemqw/image/upload/v1681080983/inkbus-tattoo-main/inkbusMainHeader_mo7kog.webp");
-  background-position-x: center;
-  background-position-y: top;
-  background-repeat: no-repeat;
-  background-size: cover;
-  box-shadow: 0 7px #cc8af8, 0 14px #8945f6, 0 21px #cc8af8;
-  z-index: 1;
-}
-
-/*Enables hover effect on aboutInkBus page; disallows in index*/
-.hoverable:hover {
-  filter: brightness(150%);
-}
-
-h1 {
-  margin: 0 auto;
-  color: var(--white);
-}
-
-h2 {
-  margin-bottom: 1%;
-}
-
-#header-title {
-  height: 14vh;
-  width: auto;
-}
-
-#header-subtitle {
-  height: 7vh;
-  width: auto;
-}
-
-/*Controlling different colored hyper link in Footer*/
-#about-page-link {
-  color: #cc8af8;
-}
-
-#about-page-link:hover {
-  color: #eb57f7;
-}
-
-/**********aboutInkBus.html*********/
-/*This is shared by all info driven pages i.e.,not <nav>*/
-.information-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: calc(100vh - 10px);
-  padding-bottom: 3%;
-  flex-wrap: wrap;
-  margin: 5% auto;
-  max-width: 88%;
-}
-
-/*An ID to add to information-container for short pages*/
-#contact-height-calc {
-  height: calc(50vh - 10px);
-}
-
-#mobile-about-height-calc {
-  height: auto;
-  align-items: normal;
-}
-
-#mobile-about-gallery-container {
-  height: auto;
-  max-width: 100%;
-  flex-direction: column;
-}
-
-#mobile-services-height-calc {
-  height: calc(120vh - 10px);
-}
-
-#mobile-calender-height-calc {
-  width: auto;
-  height: initial;
-}
-
-#mobile-innerP-container {
-  max-width: 1150px;
-  height: auto;
-}
-
-#island-about-height-calc {
-  height: calc(70vh - 10px);
-}
-
-#island-artists-height-calc {
-  width: auto;
-  flex-direction: column;
-}
-
-#mothership-height-calc {
-  width: auto;
-  height: auto;
-}
-
-/* Set the width of the image container */
-.main-about-image-container {
-  display: flex;
-  margin: 0 auto;
-  justify-content: center;
-  gap: 2%;
-}
-
-/* Make the text container fill the remaining space */
-.main-about-info {
-  text-align: center;
-  margin-bottom: 20%;
-  padding: 2%;
-  border: 5px solid var(--grape);
-  border-radius: 14px;
-}
-
-.main-about-info p {
-  margin-bottom: 2%;
-}
-
-.main-about-img {
-  width: auto;
-  border: 5px solid var(--grape);
-  border-radius: 14px;
-  margin: 0 auto;
-}
-
-/************************************************/
-/********INKBUS Mobile and Associated Pages******/
-/************************************************/
-
-/*****************mobile.html********************/
-.mobile-background {
   background: linear-gradient(to bottom, #020104, #6032c8);
   background-attachment: fixed;
   background-size: 100% 100%;
-  min-height: 100%;  /* Matches your site design */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
+/* Main content container */
+.about-inkbus-main {
+  display: grid;
+  grid-template-columns: 1fr;
+  /* Mobile: 1 column, stacked */
+  gap: 1.5rem;
+  width: 100%;
+  margin: 2em 0 21px 0;
+}
+
+/* Image Gallery Section */
+.about-mini-gallery {
+  display: grid;
+  grid-template-columns: 1fr;
+  /* Mobile: 1 column, stacked */
+  gap: 1.5rem;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.global-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.main-about-img {
+  width: 100%;
+  max-width: 300px;
+  aspect-ratio: 1/1;
+}
+
+/* About text section */
+.main-about-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1rem;
+  color: var(--white);
+  max-width: 100%;
+}
+
+.main-about-info h3 {
+  font-family: var(--heading-font);
+  font-size: 1.5rem;
+  line-height: 1.3;
+  text-align: center;
+  color: var(--lavender);
+  margin-bottom: 1rem;
+}
+
+.main-about-info p {
+  font-family: var(--body-font);
+  font-size: 1rem;
+  line-height: 1.6;
+  text-align: left;
+  color: var(--white);
+}
+
+/***************************************************/
+/********** TABLET (576px) ************************/
+/***************************************************/
+
+@media screen and (min-width: 576px) {
+
+  .main-about-info {
+    padding: 1.5rem;
+  }
+
+  .main-about-info h3 {
+    font-size: 1.75rem;
+  }
+
+  .main-about-info p {
+    font-size: 1.1rem;
+  }
+}
+
+/***************************************************/
+/********** MEDIUM (768px) ************************/
+/***************************************************/
+
+@media screen and (min-width: 768px) {
+  #inkbus-main-header-image {}
+
+  about-inkbus-main {
+    padding: 2rem;
+    max-width: 90%;
+    margin: 0 auto;
+  }
+
+  .about-mini-gallery {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .main-about-img {
+    max-width: 350px;
+  }
+
+  .main-about-img:active {
+    filter: none;
+    /* Remove mobile active state */
+  }
+
+  .main-about-info h3 {
+    font-size: 2rem;
+  }
+
+  .main-about-info p {
+    font-size: 1.15rem;
+    line-height: 1.7;
+  }
+}
+
+/***************************************************/
+/********** Desktop (992px) *************************/
+/***************************************************/
+
+@media screen and (min-width: 992px) {
+
+  about-inkbus-main {
+    max-width: 80%;
+    padding: 3rem 2rem;
+    gap: 3rem;
+  }
+
+  /* 4-column grid on desktop - all images in one row */
+  .about-mini-gallery {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    /* width: 100%; */
+  }
+
+  .main-about-img {
+    max-width: 300px;
+    /* Constraint for larger screens */
+  }
+
+  .main-about-info {
+    padding: 2rem 3rem;
+  }
+
+  .main-about-info h3 {
+    font-size: 2.25rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .main-about-info p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+  }
+}
+
+/***************************************************/
+/********** LARGE (1200px) ******************/
+/***************************************************/
+
+@media screen and (min-width: 1200px) {
+  about-inkbus-main {
+    max-width: 1200px;
+    padding: 4rem 3rem;
+  }
+
+  .about-mini-gallery {
+    gap: 3rem;
+  }
+
+  .main-about-info {
+    padding: 2rem 4rem;
+  }
+
+  .main-about-info h3 {
+    font-size: 2.5rem;
+  }
+
+  .main-about-info p {
+    font-size: 1.25rem;
+    line-height: 1.9;
+  }
+}
+
+/***************************************************/
+/********** MOBILE.HTML - NAVIGATION PAGE *********/
+/***************************************************/
+
+
+/* Background with gradient; shared with Mothership */
+.mobile-background,
+.mothership-background {
+  background: linear-gradient(to bottom, #020104, #6032c8);
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  /* Allows header, main, footer pattern */
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* Clickable header with background image */
 .inkbus-mobile-header-image {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 3%;
   width: 100%;
-  height: 25vh;
+  height: var(--header-height-mobile);
   position: sticky;
   top: 0;
   background-image: url("https://res.cloudinary.com/diyrbemqw/image/upload/v1681087070/inkbus-mobile/MobileHeader_l4dsg9.png");
-  background-position-x: center;
-  background-position-y: top;
+  background-position: center top;
   background-repeat: no-repeat;
   background-size: cover;
-  box-shadow: 0 7px #cc8af8, 0 14px #8945f6, 0 21px #cc8af8;
-  z-index: 1;
+  box-shadow: 0 7px var(--lavender), 0 14px var(--grape), 0 21px var(--lavender);
+  z-index: 100;
+  transition: filter 0.3s ease;
+  margin-bottom: 21px;
 }
 
 .inkbus-mobile-header-image:hover {
   filter: brightness(200%);
 }
 
-#mobile-calendar-header-nosticky {
+/* Main wrapper - automatically fills space between header and footer */
+.mobile-nav-items-main,
+.mothership-main {
   position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  place-items: center;
+  /* Replaces justify-content & align-items center */
+  width: 100%;
+  overflow: auto;
 }
 
-/* Page-specific fix for mobile.html navigation page */
-
-
-body:not(.mobile-background) {
-  /* min-height: 100%; */  /* Only apply to non-navigation pages */
-}
-
-/* Grid navigation - 5 columns that flex together */
+/* Grid navigation - Single column on mobile */
 .mobile-nav {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 2rem;
+  grid-template-columns: 1fr;
+  /* Single column on mobile */
+  gap: 1rem;
   justify-content: center;
   align-items: center;
-  max-width: 80%;
-  margin: 0 auto;
+  max-width: 55%;
+  margin: auto;
   padding: 2rem 0;
 }
 
-/* Hide anchor tags containing mini-size images by default */
-.mobile-nav a:has(.mini-size) {
+/* Hide full-size images by default, show mini on mobile */
+.mobile-nav a:has(.full-size) {
   display: none;
+}
+
+.mobile-nav a:has(.mini-size) {
+  display: block;
 }
 
 .mobile-nav a {
-  display: block;
   width: 100%;
 }
 
+/* Navigation images */
 .mobile-nav-img {
   width: 100%;
   height: auto;
+  object-fit: cover;
+  /* Crop to fill if needed */
+  object-position: center;
+  /* Center the image in the crop */
   transition: transform 0.3s ease-in-out, filter 0.3s ease;
-  border: 5px solid var(--grape);
-  border-radius: 14px;
+  border: var(--border-width) solid var(--grape);
+  border-radius: var(--border-radius);
   display: block;
 }
 
-.mobile-nav-img:hover {
-  transform: scale(1.05);
+/* Mobile hover effect - brightness */
+.mobile-nav-img:hover,
+.mobile-nav-img:focus {
   filter: brightness(110%);
 }
 
-/* Image size control */
-.full-size {
-  display: block;
+/***************************************************/
+/********** MOBILE.HTML - MEDIA QUERIES ***********/
+/***************************************************/
+
+/* Tablet Portrait (576px+) - Start showing multiple columns */
+@media screen and (min-width: 576px) {
+  .mobile-nav {
+    /* 2 columns */
+    gap: 1.2rem;
+    padding: 3rem 0;
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 75%;
+  }
+
+  .mobile-nav :nth-child(10) {
+    grid-column: span 2;
+    justify-self: center;
+    /* Centers the item within its spanned area */
+    max-width: 50%;
+  }
 }
 
-.mini-size {
-  display: none;
+/* Tablet Landscape (768px+) */
+@media screen and (min-width: 768px) {
+  .inkbus-mobile-header-image {
+    height: 20vh;
+  }
+
+  .mobile-nav {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.5rem;
+    min-height: calc(100vh - 20vh - 150px);
+    max-width: 85%;
+  }
+
+  .mobile-nav a:has(.full-size) {
+    display: block;
+  }
+
+  .mobile-nav a:has(.mini-size) {
+    display: none;
+  }
 }
 
-/*****************aboutMobile.html********************/
+/* Desktop (992px+) - Switch to full-size images */
+@media screen and (min-width: 992px) {
 
-/*control h1 tags of EventFlash and Custom Work*/
-#mobile-about-height-calc h1 {
-  font-size: 2.5em;
+  .inkbus-mobile-header-image {
+    height: var(--header-height-desktop);
+  }
+
+  .mobile-nav {
+    gap: 2rem;
+    max-width: 80%;
+  }
+
+  .mobile-nav-img {
+    aspect-ratio: 3 / 6;
+  }
+
+  /* Desktop hover: scale effect */
+  .mobile-nav-img:hover,
+  .mobile-nav-img:focus {
+    transform: scale(1.05);
+    filter: brightness(110%);
+  }
 }
 
-/* Set the width of the image container */
-.mobile-about-float {
-  flex: 1 0 40%;
-  border-right: 5px solid var(--magenta);
-  padding-right: 10%;
+/* Large Desktop (1200px+) - More spacing */
+@media screen and (min-width: 1200px) {
+  .mobile-nav {
+    gap: 3rem;
+  }
 }
 
-/* Make the text container fill the remaining space */
-.mobile-about-info {
-  color: var(--white);
+/*X-Large Desktop (1750px+) - Shrink buttons*/
+@media screen and (min-width: 1700px) {
+
+  .mobile-nav-items-main {
+    width: 80%;
+    margin: auto;
+  }
+
+  .mobile-nav {
+    min-height: auto;
+    margin: auto;
+  }
 }
 
-.mobile-about-img {
-  border: 5px solid var(--grape);
-  border-radius: 14px;
-  transition: transform 0.5s ease-in-out;
-}
+/*****************************************************/
+/**************** eventCalendar.html *****************/
+/***************** 1 of 5 Menu Items *****************/
+/***************** on mobile.html ********************/
+/*****************************************************/
 
-.mobile-about-img:hover {
-  transform: scale(1.05);
-}
-
-.mobile-about-galleries-nav {
-  flex: 1 0 40%;
-  height: auto;
+hr.event-spacer {
   margin: 0 auto;
-  flex-direction: column;
-  justify-content: normal;
-  padding-left: 10%;
+  width: 85%;
 }
 
-.mobile-about-galleries-nav a {
-  white-space: nowrap;
-  border: 5px solid #9538ff;
-  border-radius: 14px;
-  background-image: radial-gradient(circle farthest-side, #cc8af8, #eb57f7);
-  margin: 5%;
-  padding: 1%;
-  max-width: 20rem;
-  transition: transform 0.5s ease-in-out;
-}
-
-.mobile-about-galleries-nav a:hover {
-  transform: scale(1.05);
-}
-
-/*****aboutMobile-EventFlash and Mobile-CustomWork*********/
-.mobile-about-galleries {
-}
-
-.gallery {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  max-width: 1000px;
-  height: auto;
-}
-
-.gallery a {
-  display: block;
-  margin: 10px;
-  border: 5px solid var(--grape);
-  border-radius: 14px;
-}
-
-.gallery img {
-  height: 120px;
-  width: 120px;
-}
-
-.lightbox {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 14px;
-  background-color: rgba(0, 0, 0, 0.7);
-  justify-content: center;
-  align-items: center;
-  z-index: 100;
-}
-
-.lightbox img {
-  max-width: 90%;
-  max-height: 90%;
-  z-index: 3;
-}
-
-.close {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  font-size: 30px;
-  color: var(--white);
-  background-color: var(--grape);
-  border: 5px solid var(--lavender);
-  border-radius: 14px;
-  padding: 10px 15px;
-  cursor: pointer;
-}
-
-.back-to-top {
-  background-color: var(--black);
-  padding: 2%;
-  margin: 5% auto;
-  border: 2px solid var(--lavender);
-  border-radius: 14px;
-  text-decoration: none;
-}
-
-/***********contactMobile.html***************/
-.mobile-contact-title {
-  color: var(--white);
-  font-size: 2em;
-  margin-bottom: 2%;
-  text-align: center;
-  flex: 0 0 25%;
-  margin-right: 1%;
-}
-
-.mobile-contact-float {
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-}
-
-.mobile-contact-image-container {
-  margin-right: 1%;
-  flex: 0 0 33%;
-}
-
-.mobile-contact-img {
-  border: 5px solid var(--grape);
-  border-radius: 14px;
-  height: 45vh;
-  width: auto;
-}
-
-.mobile-contact-img:hover {
-  filter: brightness(150%);
-}
-
-.mobile-contact-info {
-  color: var(--white);
-  flex: 0 0 32%;
-}
-
-.mobile-contact-info p {
-  margin-bottom: 2%;
-}
-
-/***************servicesMobile.html*********/
-.mobile-services-img {
-  width: auto;
-  border: 5px solid var(--grape);
-  border-radius: 14px;
-  margin: 0 auto;
-}
-
-.mobile-services-info {
-  margin-bottom: 20%;
-}
-
-.mobile-services-info p {
-  text-align: center;
-}
-
-.mobile-services-list-container {
-  border: 5px solid var(--grape);
-  border-radius: 14px;
-  margin-top: 2%;
-  padding: 1% 0 2% 4%;
-}
-
-.mobile-services-list {
-  columns: 3;
-  column-gap: 5%;
-}
-
-.mobile-services-list-container h4 {
-  margin-bottom: 2%;
-}
-
-/***************eventCalendar.html*******************/
-.mobile-calendar-title-box {
-  margin-bottom: 5%;
-  text-align: center;
-}
-
-.mobile-calendar-title {
-  font-size: 3rem;
-}
-
-.mobile-calendar-subtitle {
-  color: var(--magenta);
-}
-
-/* Grid container replaces nested flexboxes */
 .mobile-calendar-grid {
   display: grid;
-  grid-template-columns: minmax(280px, 1fr) 2.5fr;
-  gap: 3%;
-  align-items: start;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  justify-items: center;
+  margin-bottom: 1em;
+  width: 75%;
 }
 
 .mobile-calendar-flash-aside {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1em;
   width: 100%;
 }
 
-.mobile-calendar-flash-aside img,
-.mobile-calendar-flash-aside input[type="image"] {
+.mobile-nav-items-main h2 {
+  text-align: center;
+  margin-bottom: 1em;
+  font-size: 2em;
+  text-wrap: nowrap;
+}
+
+#flash-board {
+  width: 100%;
+  max-width: 363px;
+  /* Match image natural width */
+}
+
+#flash-board img {
+  border: var(--border-width) solid var(--grape);
   width: 100%;
   height: auto;
-  display: block;
-  cursor: pointer;
+  /* Maintain aspect ratio */
+  max-height: 700px;
+  /* Cap at natural height */
 }
 
-.mobile-calendar-flash-aside:hover {
-  filter: brightness(125%);
+/*****************************************************/
+/*********** Controlling Flashboard Popout ***********/
+/*****************************************************/
+
+/* Dialog element */
+#flashModal {
+  padding: 0;
+  border: none;
+  max-width: 100%;
+  max-height: 100%;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  background-color: #000;
 }
+
+#flashModal::backdrop {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Close button */
+.modal-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(0, 0, 0, 0.7);
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.modal-close:hover {
+  background: rgba(0, 0, 0, 0.9);
+}
+
+/* Image inside dialog */
+#flashModal img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Tablet and up - popup style */
+@media (min-width: 576px) {
+  #flashModal {
+    width: 90%;
+    height: 85vh;
+    max-width: 500px;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    margin: auto;
+  }
+}
+
+@media (min-width: 768px) {
+  #flashModal {
+    max-width: 600px;
+    height: 80vh;
+  }
+}
+
+@media (min-width: 992px) {
+  #flashModal {
+    max-width: 700px;
+  }
+}
+
+@media (min-width: 1200px) {
+  #flashModal {
+    max-width: 800px;
+  }
+}
+
+/* Button styling */
+#flash-board {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+#flash-board:hover {
+  transform: scale(1.02);
+}
+
+#flash-board img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/*****************************************************/
+/*************** End Flashboard Popup ****************/
+/*****************************************************/
+
+/*****************************************************/
+/************** Start Calendar Stylings **************/
+/*****************************************************/
 
 .mobile-calendar-float {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
 }
 
-/* Responsive iframe container */
 .calendar-wrapper {
-  position: relative;
   width: 100%;
-  padding-bottom: 66.67%; /* 2:3 aspect ratio */
-  height: 0;
-  overflow: hidden;
+  max-width: 363px;
+  /* Match flash board max-width */
+  aspect-ratio: 363 / 685;
+  /* Match flash board aspect ratio */
+  position: relative;
+  border: var(--border-width) solid var(--grape);
+  border-radius: var(--border-radius);
 }
 
 .calendar-wrapper iframe {
@@ -680,511 +1177,625 @@ body:not(.mobile-background) {
   left: 0;
   width: 100%;
   height: 100%;
-  border: 0;
+  border: none;
+  border-radius: var(--border-radius);
 }
 
-.mobile-calendar-insta {
-  margin-top: 5%;
-  z-index: 0;
+/***********************************************/
+/************** Media Inquieries ***************/
+/***********************************************/
+
+/***********************************************/
+/*** Small (sm): 576px  - Tablets portraits ***/
+/***********************************************/
+
+@media screen and (min-width: 576px) {
+  #event-grid-styles {
+    max-width: 100%;
+  }
 }
 
-/***************innerPortraits.html*******************/
-.mobile-innerP-info {
-  max-width: 900px;
-  padding: 2%;
-  margin: 2%;
-  border: 5px solid var(--grape);
-  border-radius: 14px;
+/***********************************************/
+/*** Medium (md): 768px  - Tablets landscape ***/
+/***********************************************/
+
+@media screen and (min-width: 768px) {
+  .mobile-calendar-grid {
+    grid-template-columns: 1fr auto 1fr;
+  }
+
+  #event-spacer-reveal {
+    display: block;
+  }
+
+  #event-spacer-width {
+    display: block;
+    margin-top: 2em;
+  }
+
 }
 
-.innerP-gallery-box {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin: 3% auto;
+/*****************************************************/
+/**************** contactMobile.html *******************/
+/***************** 2 of 5 Menu Items *****************/
+/***************** on mobile.html ********************/
+/*****************************************************/
+
+.mobile-contact-float {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
 }
 
-.innerP-gallery-box::after {
-  content: "";
-  flex-basis: 200px;
+/***********************************************/
+/*** Medium (md): 768px  - Tablets landscape ***/
+/***********************************************/
+
+@media screen and (min-width: 768px) {
+  .mobile-contact-float {
+    grid-template-columns: 1fr 2fr 1fr;
+    margin: 1em auto;
+    align-items: center;
+  }
+
+  .mobile-contact-float h1 {
+    font-size: 1.5em;
+  }
+
 }
 
-.innerP-gallery-box picture {
-  flex: 0 1 200px;
-  position: relative;
-  margin: 2% auto;
+/***********************************************/
+/****** Regular (rg): 992px  - Desktops *******/
+/***********************************************/
+
+@media screen and (min-width: 992px) {
+  mobile-contact-float {
+    width: clamp(888px, 100%, 888px)
+  }
 }
 
-.innerP-gallery-box picture img {
-  object-fit: cover;
-  max-width: 100%;
+
+/*****************************************************/
+/**************** aboutMobile.html *******************/
+/***************** 3 of 5 Menu Items *****************/
+/***************** on mobile.html ********************/
+/*****************************************************/
+
+/* Mobile-first */
+
+.about-mobile-artist img {
+  width: 80%;
   height: auto;
-  vertical-align: middle;
-  border: 5px solid var(--magenta);
-  border-radius: 14px;
+  object-fit: cover;
+  /* Crop to fill if needed */
+  object-position: center;
+  /* Center the image in the crop */
+  transition: transform 0.3s ease-in-out, filter 0.3s ease;
+  border: var(--border-width) solid var(--grape);
+  border-radius: var(--border-radius);
+  margin: 1.5rem auto;
 }
 
-.innerP-gallery {
+.mobile-nav-items-main h1 {
+  margin: 1.5rem auto;
+  text-align: center;
 }
 
-/*******************************************************************/
-/****************INKBUS Mothership and associated pages*******************/
-/*******************************************************************/
-
-.mothership-background {
-  background: linear-gradient(to bottom, #020104, #6032c8);
-  background-attachment: fixed;
-  background-size: 100% 100%;
-  min-height: 100%;  /* Matches your site design */
+.mobile-nav-items-main p {
+  margin: 1.5rem auto;
+  text-align: center;
 }
 
-.inkbus-temp-mom-header-image {
+.mobile-about-float {
   display: flex;
   flex-direction: column;
-  flex-basis: 100%;
-  justify-content: center;
-  gap: 3%;
-  width: 100%;
-  height: 25vh;
-  position: sticky;
-  top: 0;
-  background-image: url("https://res.cloudinary.com/diyrbemqw/image/upload/v1707801438/inkbus-mothership/inkbusMainHeaderTemp_xbq08z.webp");
-  background-position-x: center;
-  background-position-y: top;
-  background-repeat: no-repeat;
-  background-size: cover;
-  box-shadow: 0 7px #cc8af8, 0 14px #8945f6, 0 21px #cc8af8;
-  z-index: 1;
+  align-items: center;
 }
 
-.inkbus-temp-mom-header-image:hover {
-  filter: brightness(200%);
-}
-
-#mothership-flyer-container {
-  position: relative;
-}
-
-#mothership-contact-link {
-  position: absolute;
-  left: 50%;
-  bottom: .75vh;
-  transform: translate(-50%, -50%);
-  color: var(--lt-lavender);
-}
-#mothership-contact-link:hover {
-  color: var(--magenta);
-}
-
-/* Base styles for the container */
-#mothership-images-container {
-  position: relative;
-  width: 100%;
-  margin: 0 auto;
-  padding: 4rem;
-}
-
-/* Grid layout for desktop */
-.image-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 columns */
-  grid-template-rows: repeat(2, auto); /* 2 rows */
-  gap: 1rem;
-  width: 100%;
-}
-
-/* Image styles */
-.grid-item {
-  width: 100%;
-}
-
-.grid-image {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
+hr,
+.lower {
+  border: none;
+  height: 5px;
+  background-color: var(--magenta);
+  margin: 2rem 1rem;
   display: block;
 }
 
-.video-with-images {
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
+.mobile-calendar-insta {
+  max-width: 80%;
   margin: 0 auto;
-  padding: 0 20px;
 }
 
-#mothership-video-container {
-  position: relative;
-  width: 100%;
-  max-width: 400px; /* Adjust this based on your design needs */
-  margin: 0 5vh; /* Centers the video */
-  background-color: #000;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  aspect-ratio: 9 / 16; /* Force container aspect ratio */
+.mobile-calendar-insta>div>div>div>div>article {
+  height: auto;
+  object-fit: cover;
+  /* Crop to fill if needed */
+  object-position: center;
+  /* Center the image in the crop */
+  transition: transform 0.3s ease-in-out, filter 0.3s ease;
+  border: var(--border-width) solid var(--grape) !important;
+  border-radius: var(--border-radius);
 }
 
-#mothership-video-container iframe {
-  position: absolute;
+.crt-widget.crt-widget-branded .crt-logo {
+  left: 50% !important;
+  right: auto !important;
+  transform: translateX(-50%);
+}
+
+.back-to-top {
+  color: var(--lt-lavender);
+  background: var(--black);
+  padding: 1em;
+  margin: 1em auto 5em auto;
+  transition: transform 0.3s ease-in-out, filter 0.3s ease;
+  border: var(--border-width) solid var(--grape) !important;
+  border-radius: var(--border-radius);
+}
+
+.back-to-top a {
+  color: var(--lt-lavender);
+  margin: 1em 2em;
+}
+
+
+/***********************************************/
+/************** Media Inquieries ***************/
+/***********************************************/
+/* Mobile-first approach with standard breakpoints:
+ * Small (sm):  576px  - Tablets portrait
+ * Medium (md): 768px  - Tablets landscape  
+ * Regular (rg): 992px  - Desktops
+ * Large (lg):   1200px - Large desktops
+ * X-Large (xl): 1750px - Extra Large desktops
+ */
+
+/***********************************************/
+/**** Small (sm):  576px  - Tablets portrait ***/
+/***********************************************/
+@media screen and (min-width: 576px) {
+  .mobile-nav-items-main {
+    max-width: 70%;
+    margin: 0 auto;
+  }
+}
+
+/***********************************************/
+/*** Medium (md): 768px  - Tablets landscape ***/
+/***********************************************/
+
+@media screen and (min-width: 768px) {
+  .mobile-nav-items-main {
+    max-width: 90%;
+  }
+
+  .mobile-about-float {
+    margin-top: 2em;
+  }
+
+  .about-mobile-artist {
+    display: grid;
+    grid-template-columns: 60% auto 30%;
+    padding: 3em 0 0 0;
+  }
+
+  .about-mobile-artist img {
+    width: 70%
+  }
+
+  hr {
+    display: none;
+  }
+
+  hr.vertical {
+    width: 5px;
+    height: 100%;
+    display: block;
+    margin-top: 2vh;
+  }
+
+  #mobile-about-galleries-nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 1rem;
+    /* Add spacing between buttons */
+    margin-top: 2em;
+  }
+
+  #mobile-about-galleries-nav a img {
+    width: 100%;
+    /* Override the 80% */
+    height: auto;
+    /* Explicit for aspect-ratio */
+    aspect-ratio: 3/4;
+    object-fit: fill;
+    margin: 0;
+    /* Override the 1.5rem auto margin */
+  }
+}
+
+/*****************************************************/
+/******* Large (lg):   1200px - Large desktops *******/
+/*****************************************************/
+
+@media screen and (min-width: 1200px) {
+  #mobile-about-galleries-nav {
+    width: clamp(324px, 100%, 324px);
+  }
+
+  .mobile-about-image-container {
+    width: clamp(649px, 100%, 649px);
+  }
+}
+
+/*****************************************************/
+/**************** innerPortraits.html ****************/
+/***************** 4 of 5 Menu Items *****************/
+/***************** on mobile.html ********************/
+/*****************************************************/
+
+.mobile-nav-items-main iframe {
+  max-width: 100%;
+  aspect-ratio: 16 / 9;
+}
+
+#mobile-innerP-info p {
+  margin: 0;
+}
+
+#innerP-iframe {
+  border-radius: var(--border-radius);
+  border: var(--border-width) solid var(--grape);
+  /* padding: 1em; */
+  margin: 1.5em;
+  width: 90%;
+  height: auto;
+}
+
+@media screen and (min-width: 768px) {
+  #innerP-iframe {
+    width: clamp(768px, 100%, 768px)
+  }
+}
+
+/*****************************************************/
+/**************** servicesMobile.html ****************/
+/***************** 5 of 5 Menu Items *****************/
+/***************** on mobile.html ********************/
+/*****************************************************/
+
+.mobile-services-main {
+  display: grid;
+  gap: 1.5em;
+  justify-content: center;
+  margin: 2em auto;
+}
+
+.mobile-services-info {
+  width: 75%;
+  margin: 0 auto 4em auto;
+}
+
+.mobile-services-list-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: var(--border-radius);
+  border: var(--border-width) solid var(--grape);
+  padding: 1em;
+}
+
+/***********************************************/
+/**** Small (sm):  576px  - Tablets portrait ***/
+/***********************************************/
+@media screen and (min-width: 576px) {
+  .mobile-services-main {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .mobile-services-list-container {
+    width: 65%;
+    margin: 0 auto;
+    align-items: flex-start
+  }
+}
+
+/***********************************************/
+/******* Regular (rg): 992px  - Desktops *******/
+/***********************************************/
+
+@media screen and (min-width: 992px) {
+  .mobile-services-main {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .mobile-services-info {
+    width: 100%;
+  }
+
+  .mobile-services-info h1 {
+    width: clamp(519px, 100%, 519px);
+    margin: 1.5rem auto;
+  }
+
+  .mobile-services-list-container {
+    width: clamp(400px, 100%, 400px);
+    margin: 2rem auto 0 auto;
+    align-items: flex-start
+  }
+
+  .mobile-services-info p {
+    width: clamp(890px, 100%, 973px);
+  }
+}
+
+/***********************************************/
+/**** Large (lg):   1200px - Large desktops ****/
+/***********************************************/
+
+@media screen and (min-width: 1200px) {}
+
+
+/*****************************************************/
+/*********** aboutMobile-CustomWork.html *************/
+/*********** aboutMobile-EventFlash.html *************/
+/***************** 2 of 2 Menu Items *****************/
+/************** sub-to aboutMobile.html **************/
+/*****************************************************/
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin: 0 1.5rem;
+}
+
+.gallery a {
+  transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+}
+
+.gallery a:hover {
+  transform: scale(1.05);
+  filter: brightness(1.15);
+}
+
+.lightbox {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  border: none;
+  background-color: rgba(0, 0, 0, 0.9);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+}
+
+.lightbox .close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 2rem;
+  color: var(--white);
+  background-color: var(--grape);
+  border: var(--border-width) solid var(--grape);
+  border-radius: 14px;
+  padding: 10px 15px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.lightbox .close:hover {
+  color: #ccc;
+}
+
+/***********************************************/
+/**** Small (sm):  576px  - Tablets portrait ***/
+/***********************************************/
+@media screen and (min-width: 576px) {
+  .gallery {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/***********************************************/
+/*** Medium (md): 768px  - Tablets landscape ***/
+/***********************************************/
+
+@media screen and (min-width: 768px) {
+  .gallery {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/***********************************************/
+/******* Regular (rg): 992px  - Desktops *******/
+/***********************************************/
+
+@media screen and (min-width: 992px) {
+  .gallery {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+/***********************************************/
+/**** Large (lg):   1200px - Large desktops ****/
+/***********************************************/
+
+@media screen and (min-width: 1200px) {
+  .gallery {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+/***********************************************/
+/*************** mothership.html ***************/
+/***********************************************/
+
+#mothership-flyer-container {
+  display: flex;
+  width: 80%;
+  position: relative;
+  margin: 2em auto;
+  justify-content: center;
+}
+
+#mothership-flyer-container picture {
+  position: relative;
+  /* Makes picture the positioning parent */
   display: block;
-  transform: scale(1.1); /* Scale up slightly to eliminate borders */
-  transform-origin: center;
+  /* Removes any inline spacing */
+}
+
+#mothership-flyer-container img {
+  display: block;
+  /* Removes bottom gap under image */
+  width: 100%;
+  /* Ensures image fills container */
+}
+
+#mothership-contact-link {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  bottom: 0;
+  /* Sits at the bottom of the picture */
+  left: 12.5%;
+  width: 75%;
+  text-align: center;
+  background: var(--lt-lavender);
+  text-decoration: none;
+  font-weight: bold;
+  padding: 3px;
+  margin: 0 auto 2em auto;
+  transition: background 0.3s ease;
+  justify-content: center;
+  margin: 0 auto;
+  border-radius: var(--border-radius);
+  border: var(--border-width) solid var(--grape);
+}
+
+#mothership-contact-link:hover {
+  background: rgba(0, 0, 0, 0.9);
+}
+
+#mothership-images-container {
+  display: grid;
+  width: 75%;
+}
+
+.grid-item {
+  margin-bottom: 1em;
+}
+
+.video-with-images {
+  width: 75%;
 }
 
 .side-image {
-  flex-shrink: 1; /* Allow shrinking */
-  width: 100%;
-  max-width: 400px; 
-  height: auto;
+  display: none;
 }
 
 .side-image img {
-  width: auto;
-  height: 100%;
-  object-fit: contain;
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+  padding: 1em
 }
 
-/************************************************/
-/****************MEDIA QUERIES*******************/
-/************************************************/
-
-/* Large desktop - more spacing for mobile-nav */
-@media screen and (min-width: 1400px) {
-  .mobile-nav {
-    gap: 3rem;
-  }
+#mothership-video-container {
+  border-radius: var(--border-radius);
+  border: var(--border-width) solid var(--grape);
+  margin-bottom: 4em;
 }
 
-
-@media screen and (max-width: 1237px) {
-/*****controlling the many changes needed for g-cal embed****/
-.mobile-calendar-grid {
-    gap: 2%;
-  }
-  
-  .calendar-wrapper {
-    padding-bottom: 70%; /* Slightly taller ratio for mid-size screens */
+/***********************************************/
+/**** Small (sm):  576px  - Tablets portrait ***/
+/***********************************************/
+@media screen and (min-width: 576px) {
+  #mothership-flyer-container {
+    width: 55%;
   }
 
-  /*Mothership Sizzle Reel*/
-   #mothership-video-container {
-    max-width: calc(100vw - 400px); /* Account for side image space */
-  }
-  /*mobile.html adjustments*/
-  .mobile-nav {
-    gap: 1.5rem;
-  }
-}
-
-@media screen and (max-width: 998px) {
-  /*adjusting mobile.html*/
-  .mobile-nav {
-    gap: 1.2rem;
-    max-width: 95%;
-  }
-  .mobile-calendar-title {
-    font-size: 2.5rem;
-  }
-  
-  .calendar-wrapper {
-    padding-bottom: 75%;
-  }
-
-  /*Mothership Sizzle Reel*/
   #mothership-video-container {
-    max-width: 300px; /* Smaller video on medium screens */
-  }
-  
-  .side-image {
-    height: calc(300px * 16 / 9); /* Adjust side images to match */
+    width: 75%;
+    margin: 0 auto 4em auto;
   }
 }
 
-/*Global Stylings*/
-@media screen and (max-width: 768px) {
-  header {
-    padding: 2%;
-    margin-bottom: 10%;
+/***********************************************/
+/*** Medium (md): 768px  - Tablets landscape ***/
+/***********************************************/
+
+@media screen and (min-width: 768px) {
+  #mothership-flyer-container {
+    width: 90%;
   }
 
-  nav {
-    flex-wrap: wrap;
-    height: calc(116vh - 10px);
-    justify-content: center;
-  }
-
-  footer {
-    position: inherit;
-    flex-wrap: wrap;
-    margin: 20% auto 0 auto;
-    justify-content: center;
-    padding: 5%;
-    flex-direction: column;
-  }
-
-  .footer-nav {
-  }
-
-  .footer-quote {
-    display: none;
-  }
-
-  .footer-right-side {
-    align-items: center;
-  }
-
-  /*Stylings relating to index.html*/
-  #inkbus-main-header-image {
-    height: 15vh;
-    margin-bottom: 10%;
-  }
-
-  .inkbus-main-nav {
-    height: 86vh;
-  }
-
-  .main-nav-btn {
-    margin: auto;
-  }
-
-  .main-nav-btn:hover {
-    transform: initial;
-    filter: brightness(150%);
-  }
-
-  .flex-box {
-    flex-direction: column;
-  }
-
-  .full-size {
-    display: none;
-  }
-
-  .mini-size {
-    display: initial;
-  }
-
-  /*Controls large and small size image switch for screen size*/
-
-  /***************************************/
-  /****Mobile.html and assoc pages*******/
-  /*************************************/
-
-  /*.information-container is shared by aboutMobile.html, contactMobile.html, servicesMobile.html, and mothershp.html*/
-  .information-container {
-    height: auto;
-  }
-
-  .inkbus-mobile-header-image {
-    height: 15vh;
-    margin-bottom: 10%;
-    z-index: 99;
-  }
-
-  .mobile-nav {
+  #mothership-images-container {
+    grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
   }
 
-
-  /*Stylings related to aboutMobile.html*/
-  #mobile-about-height-calc {
-    height: auto;
-    flex-direction: column;
+  .grid-item {
+    margin-bottom: 0;
   }
 
-  .main-about-img {
-    height: 50vh;
-    margin: 2% 0;
-  }
-
-  .main-about-info {
-    margin-top: 1%;
-    padding: 0 2% 2% 2%;
-    width: auto;
-  }
-
-  .mobile-about-float {
-    border-right: none;
-    padding-right: 0;
-    border-bottom: 5px solid var(--magenta);
-    padding-bottom: 10%;
-  }
-
-  .mobile-about-galleries-nav {
-    padding-top: 10%;
-    padding-left: 0;
-    border-bottom: 5px solid var(--magenta);
-    padding-bottom: 10%;
-    margin-bottom: 5%;
-  }
-
-  /*****Stylings related to EventFlash and CustomWork***/
-  #mobile-about-gallery-container {
-    padding: 0;
-    margin: auto;
-  }
-
-  .gallery {
-    max-width: 600px;
-  }
-
-  /*Stylings relating to contactMobile.html*/
-  #contact-height-calc {
-    height: calc(90vh - 10px);
-  }
-
-  .mobile-contact-float {
-    flex-direction: column;
-    margin: 0 auto 5% auto;
-  }
-
-  .mobile-contact-info {
-    text-align: center;
-    margin-top: 2%;
-  }
-
-  /*Stylings relating to servicesMobile.html*/
-  #mobile-services-height-calc {
-    height: auto;
-  }
-
-  .mobile-services-img {
-    height: 50vh;
-    margin: 2% 0;
-  }
-
-  .mobile-services-info {
-    margin-top: 1%;
-    padding: 0 2% 2% 2%;
-  }
-
-  .mobile-services-info p {
-    font-size: larger;
-    margin-bottom: 5%;
-  }
-
-  .mobile-services-list {
-    columns: 2;
-    column-gap: 8%;
-    padding: 8%;
-    font-size: large;
-  }
-
-  .mobile-services-list h4 {
-    margin-bottom: 2%;
-  }
-
-  /*Stylings relating to eventCalendar.html*/
-   .mobile-calendar-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-  
-  .mobile-calendar-title {
-    font-size: 2rem;
-  }
-  
-  .mobile-calendar-title-box {
-    margin-bottom: 3%;
-  }
-  
-  .mobile-calendar-flash-aside {
-    max-width: 400px;
+  #mothership-video-container {
     margin: 0 auto;
   }
-  
-  .calendar-wrapper {
-    padding-bottom: 80%;
-  }
 
-  /*Stylings relating to innerPortraits.html*/
-  #mobile-innerP-container {
-    flex-wrap: wrap;
-  }
-
-  #mobile-innerP-container h1 {
-    padding: auto 5%;
-    text-align: center;
-  }
-    /***************************************/
-   /*Stylings relating to mothership.html*/
-   /***************************************/
-  .inkbus-temp-mom-header-image {
-    height: 15vh;
-    margin-bottom: 10%;
-  }
-  #mothership-contact-link {
-    bottom: 1.5vh;
-    text-wrap: nowrap;
-    font-size: 2.5vh;
-  }
-  #mothership-images-container {
-    padding: 1rem;
-  }
-  
-  /* Mobile layout - vertical stack of Event Space Images */
-
-  .image-grid {
+  .video-with-images {
     display: grid;
-    grid-template-columns: 1fr; /* Single column */
-    gap: 1rem; /* Smaller gap on mobile */
-  }
-  
-  .grid-item {
-    margin-bottom: 0.5rem; /* Additional space between items */
+    grid-template-columns: repeat(3, 1fr);
+    align-items: stretch;
   }
 
-  /*Sizzle Reel*/
-  #mothership-video-container {
-    max-width: 90%; /* Takes up more width on mobile */
-  }
-   .side-image {
-    display: none;
+  .video-with-images {
+    margin-bottom: 4em;
   }
 
-  /* Mobile.html - switch to single column with mini images */
-@media screen and (max-width: 550px) {
-.mobile-nav {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-    max-width: 95%;
-  }
-  
-  /* Hide full-size anchor tags, show mini-size anchor tags */
-  .mobile-nav a:has(.full-size) {
-    display: none;
-  }
-  
-  .mobile-nav a:has(.mini-size) {
+  .side-image {
     display: block;
   }
+
+  .side-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    /* or 'cover' depending on your preference */
+  }
 }
-/* Small mobile phones */
-@media screen and (max-width: 450px) {
-  .mobile-calendar-title {
-    font-size: 1.75rem;
+
+/***********************************************/
+/******* Regular (rg): 992px  - Desktops *******/
+/***********************************************/
+
+@media screen and (min-width: 992px) {
+  #mothership-images-container {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    width: 90%
   }
-  
-  .mobile-calendar-subtitle {
-    font-size: 1rem;
+}
+
+/***********************************************/
+/**** Large (lg):   1200px - Large desktops ****/
+/***********************************************/
+
+@media screen and (min-width: 1200px) {
+
+  #mothership-images-container {
+    width: clamp(1080px, 100%, 1080px)
   }
-  
-  .mobile-calendar-flash-aside {
-    max-width: 90%;
-  }
-  
-  .calendar-wrapper {
-    padding-bottom: 100%; /* More square on very small screens */
-  }
-  
-  .mobile-calendar-insta {
-    margin-top: 3%;
+
+  .video-with-images {
+    width: clamp(900px, 100%, 900px)
   }
 }

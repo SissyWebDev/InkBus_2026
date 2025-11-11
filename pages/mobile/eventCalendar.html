@@ -1,85 +1,148 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title></title>
-  <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="View INKBUS Mobile tattoo event calendar, flash board designs, and artist Instagram feed. Find Portland's purple bus at markets, festivals, and special events.">
+  <title>INKBUS Event Calendar 2025 - Portland Mobile Tattoo Studio</title>
+  
+  <!-- Stylesheets -->
   <link rel="stylesheet" href="../../assets/styles/reset.css">
   <link rel="stylesheet" href="../../assets/styles/main.css">
-  <!--<link href="https://assets.juicer.io/embed.css" media="all" rel="stylesheet" type="text/css" />-->
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Favicons -->
   <link rel="apple-touch-icon" sizes="180x180" href="../../assets/images/favicons/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="../../assets/images/favicons/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicons/favicon-16x16.png">
   <link rel="manifest" href="../../assets/images/favicons/site.webmanifest">
+  
+  <!-- Theme colors -->
   <meta name="msapplication-TileColor" content="#da532c">
   <meta name="theme-color" content="#ffffff">
 </head>
 
 <body class="mobile-background">
+  
   <div id="top"></div>
-  <a href="mobile.html">
-    <header class="inkbus-mobile-header-image" id="mobile-calendar-header-nosticky">
+  
+  <!-- Header -->
+  <a href="mobile.html" aria-label="Return to INKBUS Mobile home">
+    <header class="inkbus-mobile-header-image" id="mobile-calendar-header-nosticky" role="banner">
     </header>
   </a>
-  <main class="information-container" id="mobile-calender-height-calc">
+  
+  <main class="mobile-nav-items-main" id="event-grid-styles">
+    
     <section class="mobile-calendar-title-box">
       <h1 class="mobile-calendar-title">OH, THE PLACES WE'LL GO...</h1>
-      <h2 class="mobile-calendar-subtitle">Flash Board 2023, INKBUS Mobile Event Calendar, and Instagram Feed Below</h2>
+      <p class="mobile-calendar-subtitle">Flash Board 2023, INKBUS Mobile Event Calendar, and Instagram Feed Below</p>
     </section>
+
+    <hr class="event-spacer" id="event-spacer-reveal">
+    
     <section class="mobile-calendar-grid">
-      <section class="mobile-calendar-flash-aside">
-        <input type="image" id="flash-board"
-          src="https://res.cloudinary.com/diyrbemqw/image/upload/c_scale,e_improve,h_700,q_auto:good,w_363/v1683096280/inkbus-mobile/inkbus-mobile-calendar/inkbusFlashBoard_23_umsrfo.webp"
-          onclick="document.getElementById('flash-board').requestFullscreen()">
+      
+      <section class="mobile-calendar-flash-aside" aria-labelledby="flash-board-heading">
+        
+        <h2 id="flash-board-heading">Flash Board</h2>
+        
+        <button type="button" id="flash-board" aria-label="View flash board in fullscreen">
+          <img src="https://res.cloudinary.com/diyrbemqw/image/upload/c_scale,e_improve,h_700,q_auto:good,w_363/v1683096280/inkbus-mobile/inkbus-mobile-calendar/inkbusFlashBoard_23_umsrfo.webp" 
+               alt="INKBUS 2023 Flash Board showing available tattoo designs" 
+               width="363" 
+               height="700">
+        </button>
+        
+        <dialog id="flashModal">
+          <button onclick="document.getElementById('flashModal').close()" class="modal-close" aria-label="Close flash board">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+          <img src="https://res.cloudinary.com/diyrbemqw/image/upload/c_scale,e_improve,h_700,q_auto:good,w_363/v1683096280/inkbus-mobile/inkbus-mobile-calendar/inkbusFlashBoard_23_umsrfo.webp" 
+               alt="INKBUS 2023 Flash Board showing available tattoo designs">
+        </dialog>
+        
       </section>
-      <section class="mobile-calendar-float">
+
+      <hr class="event-spacer vertical">
+      
+      <section class="mobile-calendar-float" aria-labelledby="calendar-heading">
+        <h2 id="calendar-heading">Event Calendar</h2>
         <div class="calendar-wrapper">
           <iframe
-            src="https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%239E69AF&ctz=America%2FLos_Angeles&showPrint=0&showTabs=0&showCalendars=0&src=MmQzMDQwNmY0Nzk0OWFiYTUxY2JjODNiMzk5MDg1M2E5MTI4OGQ3NjA5MWYyYTM5ZDFiOTg1YTUyMWEzOGIyN0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%23B39DDB">
+            src="https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%239E69AF&ctz=America%2FLos_Angeles&showPrint=0&showTabs=0&showCalendars=0&src=MmQzMDQwNmY0Nzk0OWFiYTUxY2JjODNiMzk5MDg1M2E5MTI4OGQ3NjA5MWYyYTM5ZDFiOTg1YTUyMWEzOGIyN0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%23B39DDB"
+            title="INKBUS Mobile event calendar showing upcoming tattoo events and availability"
+            width="100%"
+            height="600">
           </iframe>
         </div>
       </section>
+      
     </section>
-    <section class="mobile-calendar-insta">
-      <div id="curator-feed-default-feed-layout"><a href="https://curator.io" target="_blank"
+
+    <hr class="event-spacer" id="event-spacer-width">
+    
+    <section class="mobile-calendar-insta" aria-labelledby="instagram-heading">
+      <h2 id="instagram-heading">Instagram Feed</h2>
+      <div id="curator-feed-default-feed-layout"><a href="https://curator.io" target="_blank" rel="noopener"
           class="crt-logo crt-tag">Powered by Curator.io</a></div>
     </section>
+    
     <a class="back-to-top" href="#top">Back to Top</a>
+    
   </main>
-
-  <footer>
-    <section class="footer-left-side">
-      <p>&copyINKBUS TATTOO 2023</p>
+  
+  <footer class="footer-item-children" role="contentinfo">
+      
+    <section id="footer-left-side">
+      <p>&copy; INKBUS TATTOO 2025</p>
       <p>Portland, OR</p>
     </section>
-    <section class="footer-nav">
+      
+    <nav class="footer-nav" aria-label="Footer navigation">
       <a href="../../pages/mobile/mobile.html">INKBUS Mobile</a>
       <a href="../../pages/mothership/mothership.html">INKBUS Mothership</a>
+    </nav>
+      
+    <section id="footer-right-side">
+      <a id="about-page-link" href="../../pages/main/aboutInkBus.html">ABOUT INKBUS</a>
+      <a href="mailto:info@inkbustattoo.com">info@inkbustattoo.com</a>
     </section>
-    <section class="footer-right-side">
-      <a href="../../pages/main/aboutInkBus.html">ABOUT US</a>
-      <a href=mailto:"info@inkbustattoo.com">info@inkbustattoo.com</a>
-
-    </section>
+      
   </footer>
-
-  <script type="text/javascript">
+  <script>
     /* curator-feed-default-feed-layout */
     (function () {
       var i, e, d = document, s = "script"; i = d.createElement("script"); i.async = 1; i.charset = "UTF-8";
       i.src = "https://cdn.curator.io/published/9d8e38e4-efb5-4f4e-bff5-63f127cbd100.js";
       e = d.getElementsByTagName(s)[0]; e.parentNode.insertBefore(i, e);
     })();
-  </script>
-</body>
+   </script>
+    <script>
+      document.getElementById('flash-board').addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        // Only open modal on tablet and up (576px+)
+        if (window.innerWidth >= 576) {
+          document.getElementById('flashModal').showModal();
+        }
+      });
+      
+      // Close modal if user resizes below 576px while it's open
+      window.addEventListener('resize', function() {
+        const modal = document.getElementById('flashModal');
+        if (window.innerWidth < 576 && modal.open) {
+          modal.close();
+        }
+      });
+      
+      // Close on backdrop click
+      document.getElementById('flashModal').addEventListener('click', function(e) {
+        if (e.target === this) this.close();
+      });
+    </script>
 
+ 
+</body>
 </html>
-<!--<img class="working-on-it"
-      src="https://res.cloudinary.com/diyrbemqw/image/upload/v1681259396/WorkingOnIt_idn9hb.png"
-      alt="We're Working On It! sign on pages that are not yet ready" width="350px" height="auto">
-    <section class="flex-box mobile-calendar-insta-box"></section>
-    -->
