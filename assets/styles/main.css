@@ -16,7 +16,7 @@
 :root {
   /* Typography */
   --font-family: lulo-one, Helvetica, sans-serif;
-
+  
   /* Brand Colors */
   --grape: rgb(137, 69, 246);
   --magenta: rgb(235, 87, 247);
@@ -26,7 +26,7 @@
   --aluminum: rgb(169, 169, 169);
   --white: #fff;
   --black: #000;
-
+  
   /* Spacing */
   --header-height-mobile: 15vh;
   --header-height-desktop: 25vh;
@@ -34,7 +34,7 @@
   --border-width: 5px;
 
   /* All Image Borders */
-  --image-border: var(--border-width) solid var(--grape);
+  --image-border: var(--border-width) solid var(--grape); 
 }
 
 /***************************************************/
@@ -58,7 +58,7 @@ body {
 img {
   margin: 0 auto;
   border-radius: var(--border-radius);
-  border: var(--border-width) solid var(--grape);
+  border: var(--border-width) solid var(--grape); 
   height: auto;
   max-width: 100%;
 }
@@ -90,7 +90,7 @@ h6 {
 
 /* Links */
 a {
-  color: var(--aluminum);
+  color: var(--lt-lavender);
   text-decoration: none;
 }
 
@@ -99,45 +99,57 @@ a:hover {
 }
 
 /***************************************************/
-/********** INDEX.HTML - MAIN HOMEPAGE ************/
+/********** index.html - MAIN HOMEPAGE ************/
 /***************************************************/
 
 /* Background */
 .main-background {
-  background: linear-gradient(to bottom, #8945f6, #eb57f7);
-  background-repeat: no-repeat;
+  background: linear-gradient(to bottom, #020104, #6032c8);
   background-attachment: fixed;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-.inkbus-main-nav,
-.mobile-nav-items-main {
-  padding-bottom: 1.5em;
-}
+  .mobile-nav-items-main {
+    /* padding-bottom: 1.5em; */
+  }
 
 /* Header with sticky positioning */
 #inkbus-main-header-image {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 3%;
-  width: 100%;
-  height: var(--header-height-mobile);
-  position: sticky;
-  top: 0;
-  background-image: url("https://res.cloudinary.com/diyrbemqw/image/upload/v1681080983/inkbus-tattoo-main/inkbusMainHeader_mo7kog.webp");
-  background-position: center top;
+  background-image: url('../../assets/images/InkBus-Header-Background.png');
   background-repeat: no-repeat;
-  background-size: cover;
-  box-shadow: 0 7px var(--lavender), 0 14px var(--grape), 0 21px var(--lavender);
-  z-index: 100;
-  margin-bottom: 21px;
-  /* width of 3-strip box-shadow */
+  background-size: auto 100%;
 }
 
 #inkbus-main-header-image:hover {
-  filter: brightness(200%);
+  filter: brightness(150%);
+}
+
+#inkbus-main-header-image::after {
+  content: '';
+  display: block;
+  height: 21px; /* 3 stripes × 7px each */
+  background: linear-gradient(
+    to bottom,
+    var(--lavender) 0px, var(--lavender) 7px,
+    var(--grape) 7px, var(--grape) 14px,
+    var(--lavender) 14px, var(--lavender) 21px
+  );
+  width: 100%;
+}
+
+#inkbus-main-header-image h1 img {
+  border: none;
+  padding:.5rem
+}
+
+#inkbus-main-header-image p img {
+  border: none;
+  width: 47vw;
+  padding-bottom: .5rem
 }
 
 /* Header images (logo, subtitle) */
@@ -147,6 +159,7 @@ a:hover {
   max-width: 90%;
 }
 
+#landing-main {flex: 1;display: flex;flex-direction: column;justify-content: center;}
 /* Main Navigation Container */
 .inkbus-main-nav {
   display: flex;
@@ -154,12 +167,8 @@ a:hover {
   align-items: center;
   justify-content: center;
   gap: 2rem;
-  width: 100%;
-  max-width: 100%;
-  /* Full width on mobile for bigger buttons */
+   /* Full width on mobile for bigger buttons */
   margin: 0 auto;
-  min-height: calc(100vh - var(--header-height-mobile) - 150px);
-  /* Account for header and footer */
 }
 
 /* Navigation buttons (images) */
@@ -168,7 +177,7 @@ a:hover {
   max-width: 400px;
   height: auto;
   transition: transform 0.3s ease-in-out, filter 0.3s ease;
-  border: var(--border-width) solid var(--grape);
+  border: var(--border-width) solid var(--grape); 
   border-radius: var(--border-radius);
 }
 
@@ -192,43 +201,261 @@ a:hover {
   filter: brightness(150%);
 }
 
+/********** MEDIA QUERIES: COMPACT (376px-) ******/
+
+@media screen and (max-width: 376px) {
+  
+  main nav {
+    width: 100%;
+    max-width: 200px; /* Constrains on larger screens */
+    padding: clamp(1rem, 4vw, 2rem);
+    gap: 1rem; /* Space between the two images */
+    display: flex;
+    flex-direction: column;
+  }
+  
+  main nav img {
+    width: 100%;
+    height: auto;
+  }
+  
+}
+
 /***************************************************/
-/********** FOOTER (Nav View) ***********************/
+/********** MEDIA QUERIES: TABLET (576px) *********/
 /***************************************************/
+
+
+
+@media screen and (min-width: 576px) {
+  
+  /* Navigation - Start showing side-by-side layout */
+  .inkbus-main-nav {
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    max-width: 95%; /* Constrain width on tablets */
+  }
+
+  #inkbus-main-header-image p img {
+    width: auto;
+}
+  
+  .main-nav-btn {
+    max-width: 350px;
+    height: 30vh;
+  }
+}
+
+
+/***************************************************/
+/********** MEDIA QUERIES: MEDIUM (768px) *********/
+/***************************************************/
+
+@media screen and (min-width: 768px) {
+  
+  /* Header grows larger */
+  #inkbus-main-header-image {
+  }
+  
+  /* Navigation */
+  .inkbus-main-nav {
+    flex-direction: row;
+    gap: 2rem;
+    /* min-height: calc(100vh - 20vh - 150px); */
+  }
+  
+  .main-nav-btn {
+    max-width: 380px;
+    height: 35vh;
+  }
+
+}
+
+/***************************************************/
+/********** MEDIA QUERIES: Desktop (992px) **********/
+/***************************************************/
+
+@media screen and (min-width: 992px) {
+  
+  /* Header at full desktop size */
+  #inkbus-main-header-image {
+    /* height: 20vh; */
+  }
+  
+  /* Navigation */
+  .inkbus-main-nav {
+    gap: 2.5rem;
+    max-width: 88%;
+    /* min-height: calc(100vh - var(--header-height-desktop) - 100px); */
+  }
+  
+  /* Switch to full-size images, hide mini */
+  .main-nav-btn.full-size {
+    display: block;
+  }
+  
+  .main-nav-btn.mini-size {
+    display: none;
+  }
+  
+  .main-nav-btn {
+    max-width: 400px;
+    height: 40vh;
+    width: auto;
+  }
+  
+  /* Desktop hover effect: scale instead of brightness */
+  .main-nav-btn:hover,
+  .main-nav-btn:focus {
+    transform: scale(1.1);
+    filter: none;
+  }
+}
+
+/***************************************************/
+/********** MEDIA QUERIES: Large (1200px) **********/
+/***************************************************/
+
+@media screen and (min-width: 1200px) {
+  
+  /* More spacing on large screens */
+  .inkbus-main-nav {
+    gap: 3rem;
+  }
+  
+  .main-nav-btn {
+    max-width: 450px;
+  }
+}
+
+/***************************************************/
+/********* MEDIA QUERIES: X-Large (1750px) *********/
+/***************************************************/
+
+@media screen and (min-width: 1750px) {
+  #inkbus-main-header-image {
+  background-position-y: bottom;
+  }
+}
+
+/***************************************************/
+/****************** FOOTER Global ******************/
+/***************************************************/
+
+footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 21px;
+  background: linear-gradient(
+    to bottom,
+    var(--lavender) 0px,
+    var(--lavender) 7px,
+    var(--grape) 7px,
+    var(--grape) 14px,
+    var(--lavender) 14px,
+    var(--lavender) 21px
+  );
+}
+
 footer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   gap: 1rem;
   width: 100%;
   background-color: var(--black);
   color: var(--white);
   padding: 1rem;
-  box-shadow: 0 -7px var(--lavender), 0 -14px var(--grape), 0 -21px var(--lavender);
   font-size: 1em;
   line-height: 1;
-  position: relative;
+  position: sticky;
+  bottom: 0;
+  position: relative; /* Creates positioning context for ::before */
+  padding-top: calc(1rem + 21px); /* Makes room for the 21px stripes */
 }
 
-#footer-left-side {
+.footer-left-side {
   display: flex;
-  align-items: center;
   width: 100%;
   justify-content: space-between;
-  flex-direction: column;
   gap: 0.25rem;
 }
 
-#footer-left-side p {
+.footer-left-side p {
   color: var(--lavender);
   font-weight: 500;
 }
 
+.footer-right-side {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  position: relative;
+  flex-direction: row;
+  gap: 0.25rem;
+}
+
+.footer-right-side a {
+  color: var(--lt-lavender);
+  min-height: auto;
+  white-space: nowrap; /* Prevents wrapping */
+}
+
+.footer-right-side a:hover {
+  color: var(--magenta);
+  min-height: auto;
+}
+
+@media screen and (min-width: 576px) {
+  footer {
+    flex-direction: row;
+    padding-top: calc(clamp(0.75rem, 2.75rem - 0.17vw, 1.75rem) + 21px);
+    font-size: clamp(1.15rem, 1rem + 0.3vw, 1.375rem);
+    gap: 1.25rem;
+  }
+  
+  .footer-left-side {
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 0.6;
+  }
+
+  .footer-left-side :nth-child(1) {
+    font-size: clamp(0.625rem, 0.5rem + 0.15vw, 0.8125rem);
+    white-space: nowrap;
+  }
+  
+  .footer-left-side :nth-child(2) {
+    font-size: clamp(1.15rem, 0.95rem + 0.35vw, 1.625rem);
+  }
+
+  .footer-right-side {
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+    flex: 0.6;
+  }
+
+  .footer-right-side a:nth-of-type(1) {
+    font-size: clamp(1rem, 0.8rem + 0.4vw, 1.625rem);
+  }
+  
+  .footer-right-side a:nth-of-type(2) {
+    font-size: clamp(0.75rem, 0.65rem + 0.15vw, 0.9375rem);
+  }
+}
+/*****************************************************/
+/* FOOTER (index,html and mobile.html View Specific) */
+/********* For class="footer-quote-variant" **********/
+/*****************************************************/
+
 .footer-quote {
   display: flex;
-  text-align: center;
   flex-direction: column;
+  text-align: center;
   width: 100%;
   justify-content: center;
 }
@@ -237,35 +464,44 @@ footer {
   color: var(--magenta);
   font-weight: 700;
   font-style: italic;
+  white-space: nowrap; /* Prevents wrapping */
 }
 
-#footer-right-side {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  justify-content: space-between;
-  position: relative;
-  flex-direction: column;
-  gap: 0.25rem;
+@media screen and (min-width: 576px) {
+  .footer-quote {
+    flex-direction: row;
+    flex: 1;
+    align-items: center;
+    gap: 0;
+  }
+  
+  .footer-quote p {
+    font-size: clamp(1.25rem, 0.5rem + 1.3vw, 2.5rem);
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+    flex: 1;
+    display: flex;
+    align-items: center;
+  }
+  
+  .footer-quote :nth-of-type(1) {
+    justify-content: flex-end;
+  }
+  
+  .footer-quote :nth-of-type(2) {
+    justify-content: flex-start;
+    /* Kerning grows with the massive font */
+    padding-left: clamp(0.375rem, 0.1rem + 0.5vw, 1rem);
+  }
 }
 
-#footer-right-side a {
-  color: var(--lt-lavender);
-  min-height: auto;
-}
+/***************************************************/
+/********** FOOTER (Nav View Specific) *************/
+/********* For class="footer-nav-variant" **********/
+/***************************************************/
 
-/* Style the label to look like a link */
-#thank-you-egg {
-  color: var(--lavender);
-  cursor: pointer;
-  text-decoration: none;
-}
-
-#thank-you-egg:hover {
-  color: var(--magenta);
-}
-
-.footer-nav {
+.footer-nav-variant nav {
   position: relative;
   display: flex;
   gap: 0.5rem;
@@ -275,7 +511,7 @@ footer {
   flex-direction: column;
 }
 
-.footer-nav a {
+.footer-nav-variant nav a {
   padding: 0 5px;
   color: var(--magenta);
   min-height: auto;
@@ -283,8 +519,35 @@ footer {
   transition: opacity 0.5s ease;
 }
 
-.footer-nav a:hover {
+.footer-nav-variant nav a:hover {
   color: var(--lavender);
+}
+
+@media screen and (min-width: 576px) {
+  .footer-nav-variant nav {
+  flex-direction: column; /* Force vertical stacking */
+  align-items: center; /* Center items horizontally */
+  flex-wrap: nowrap;
+  width: 100%;
+  }
+}
+ 
+/***************************************************/
+/******* FOOTER ('Thank You!' View Specific) *******/
+/************ For aboutInkBus.html and *************/
+/**************** mothership.html ******************/
+/***************************************************/
+
+
+/* Style the label to look like a link */
+#thank-you-egg {
+  color: var(--grape);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+#thank-you-egg:hover {
+  color: var(--magenta);
 }
 
 /* Hide checkbox */
@@ -295,13 +558,13 @@ footer {
 /* Easter Egg GIF - Desktop */
 .easter-egg-gif {
   position: absolute;
-  top: 50%;
+  bottom: 2%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -2%);
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.5s ease;
-  max-width: 200px;
+  max-width: 150px;
   z-index: 10;
 }
 
@@ -353,8 +616,266 @@ footer {
   transition: transform 0.2s ease;
 }
 
+.footer-right-side#thank-you-egg {
+  font-size: revert;
+}
 
+/* Mobile: Show overlay when checkbox is checked */
+@media (max-width: 575px) {
+  .easter-egg-gif {
+    display: none;
+  }
+  
+  .easter-egg-checkbox:checked ~ .easter-egg-overlay {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
 
+@media screen and (min-width: 576px) {
+  #thank-you-egg {
+    padding: 0;
+    font-size: large;
+  }
+
+  /* Override for when there's a label before the email */
+  .footer-right-side:has(#thank-you-egg) :nth-child(3) {
+      font-size: smaller;
+  }
+  
+  .easter-egg-checkbox,
+  .easter-egg-overlay {
+    display: none !important;
+  }
+  
+  footer:has(#thank-you-egg:hover) #footer-nav-styles a {
+    opacity: 0;
+  }
+  
+  footer:has(#thank-you-egg:hover) .easter-egg-gif {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+/***************************************************/
+/***** FOOTER ('Marcoon Runner' View Specific) *****/
+/*************** For index.html ********************/
+/***************************************************/
+
+/* Container for the animated Markoon */
+.markoon-container {
+  position: absolute;
+  /* bottom: 21px; */ /* Sits exactly on top of the 21px footer stripes */
+  left: 0;
+  width: 100%;
+  height: 0; /* No height to avoid affecting layout */
+  pointer-events: none; /* Doesn't interfere with clicks */
+  overflow: visible;
+  z-index: 10; /* Above footer content, below main nav */
+}
+
+/* The animated image itself */
+.markoon-runner {
+  position: absolute;
+  bottom: 0;
+  width: clamp(120px, 25vw, 150px); /* Responsive sizing */
+  height: auto;
+  will-change: transform;
+  animation: markoon-journey 3.75s linear 1;
+  border: none;
+  margin-bottom: 44px;
+  opacity: 0;
+}
+
+/* Journey animation: right to left, flip, left to right */
+@keyframes markoon-journey {
+  0% {
+    left: 100%;
+    transform: translateX(0) scaleX(1);
+    opacity: 1;
+  }
+  
+  46% {  
+    left: -30vw; /* Fully off-screen left */
+    transform: translateX(0) scaleX(1);
+  }
+  
+  46.1% {
+    left: -30vw;
+    transform: translateX(0) scaleX(-1); /* Flip instantly */
+  }
+  
+  69% {  
+    left: -30vw; /* Stay paused */
+    transform: translateX(0) scaleX(-1);
+  }
+  
+  85% {  
+    left: 50%;
+    transform: translateX(-50%) scaleX(-1);
+  }
+  
+  100% {  
+    left: 100%;
+    transform: translateX(0) scaleX(-1);
+    opacity: 1;
+  }
+}
+
+/* Button spin animation - triggered by Markoon's hand */
+.main-nav-btn.spin-on-bump {
+  animation: button-spin-mobile 4s ease-in-out 1;
+  transform-origin: center center;
+}
+
+/* Mobile: flat spin (rotateZ) */
+@keyframes button-spin-mobile {
+  0%, 81% {
+    transform: rotate(0deg);
+  }
+  
+  83% {
+    transform: rotate(0deg); /* Moment of contact */
+  }
+  
+  90% {
+    transform: rotate(1800deg); /* 3 full spins (360deg × 5) */
+  }
+  
+  100% {
+    transform: rotate(1080deg); /* Hold */
+  }
+}
+
+@media screen and (min-width: 992px) {
+    .markoon-runner {
+    animation: markoon-journey 4.25s linear 1;
+    }
+  
+    /* Journey animation: right to left, flip, left to right */
+    @keyframes markoon-journey {
+      0% {
+        left: 100%;
+        transform: translateX(0) scaleX(1);
+        opacity: 1;
+      }
+      
+      46% {  
+        left: -30vw; /* Fully off-screen left */
+        transform: translateX(0) scaleX(1);
+      }
+      
+      46.1% {
+        left: -30vw;
+        transform: translateX(0) scaleX(-1); /* Flip instantly */
+      }
+      
+      69% {  
+        left: -30vw; /* Stay paused */
+        transform: translateX(0) scaleX(-1);
+      }
+      
+      85% {  
+        left: 50%;
+        transform: translateX(-50%) scaleX(-1);
+      }
+      
+      100% {  
+        left: 100%;
+        transform: translateX(0) scaleX(-1);
+        opacity: 1;
+      }
+    }
+    
+    /* Button spin animation - triggered by Markoon's hand */
+    .main-nav-btn.spin-on-bump {
+      animation: button-spin-mobile 4.53s ease-in-out 1;
+    }
+    
+    /* Mobile: flat spin (rotateZ) */
+    @keyframes button-spin-mobile {
+      0%, 81% {
+        transform: rotate(0deg);
+      }
+      
+      83% {
+        transform: rotate(0deg); /* Moment of contact */
+      }
+      
+      90% {
+        transform: rotate(1800deg); /* 3 full spins (360deg × 5) */
+      }
+      
+      100% {
+        transform: rotate(1080deg); /* Hold */
+      }
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .markoon-runner {
+    animation: markoon-journey 4.5s linear 1;
+    }
+    /* Journey animation: right to left, flip, left to right */
+    @keyframes markoon-journey {
+      0% {
+        left: 100%;
+        transform: translateX(0) scaleX(1);
+        opacity: 1;
+      }
+      
+      46% {  
+        left: -30vw; /* Fully off-screen left */
+        transform: translateX(0) scaleX(1);
+      }
+      
+      46.1% {
+        left: -30vw;
+        transform: translateX(0) scaleX(-1); /* Flip instantly */
+      }
+      
+      69% {  
+        left: -30vw; /* Stay paused */
+        transform: translateX(0) scaleX(-1);
+      }
+      
+      85% {  
+        left: 50%;
+        transform: translateX(-50%) scaleX(-1);
+      }
+      
+      100% {  
+        left: 100%;
+        transform: translateX(0) scaleX(-1);
+        opacity: 1;
+      }
+    }
+    
+    /* Button spin animation - triggered by Markoon's hand */
+    .main-nav-btn.spin-on-bump {
+      animation: button-spin-mobile 5s ease-in-out 1;
+    }
+    
+    /* Mobile: flat spin (rotateZ) */
+    @keyframes button-spin-mobile {
+      0%, 81% {
+        transform: rotate(0deg);
+      }
+      
+      83% {
+        transform: rotate(0deg); /* Moment of contact */
+      }
+      
+      90% {
+        transform: rotate(1800deg); /* 3 full spins (360deg × 5) */
+      }
+      
+      100% {
+        transform: rotate(1080deg); /* Hold */
+      }
+    }
+}
 
 /***************************************************/
 /********** UTILITY CLASSES ***********************/
@@ -365,223 +886,6 @@ footer {
   padding: 0.5%;
 }
 
-/********** MEDIA QUERIES: COMPACT (376px-) ******/
-
-@media screen and (max-width: 376px) {}
-
-/***************************************************/
-/********** MEDIA QUERIES: TABLET (576px) *********/
-/***************************************************/
-
-/* Mobile: Show overlay when checkbox is checked */
-@media (max-width: 575px) {
-  .easter-egg-gif {
-    display: none;
-  }
-
-  .easter-egg-checkbox:checked~.easter-egg-overlay {
-    opacity: 1;
-    pointer-events: auto;
-  }
-}
-
-@media screen and (min-width: 576px) {
-
-  /* Navigation - Start showing side-by-side layout */
-  .inkbus-main-nav {
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    max-width: 95%;
-    /* Constrain width on tablets */
-  }
-
-  .main-nav-btn {
-    max-width: 350px;
-    height: 30vh;
-  }
-
-  /* Footer - Start horizontal layout */
-  footer {
-    flex-direction: row;
-    padding: 1.5rem;
-    /* Slightly larger on tablets */
-  }
-
-  #footer-left-side {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  #footer-left-side :nth-child(1) {
-    font-size: smaller;
-  }
-
-  .footer-nav {
-    flex-direction: column;
-    /* Force vertical stacking */
-    align-items: center;
-    /* Center items horizontally */
-    flex-wrap: nowrap;
-    width: 100%;
-  }
-
-  #footer-right-side {
-    flex-direction: column;
-    align-items: flex-end;
-    text-align: right;
-  }
-
-  #footer-right-side a:hover {
-    color: var(--grape);
-    min-height: auto;
-  }
-
-  #footer-right-side a:nth-of-type(2) {
-    font-size: smaller;
-  }
-
-  #thank-you-egg {
-    padding: 0;
-    font-size: large;
-  }
-
-  /* Override for when there's a label before the email */
-  #footer-right-side:has(#thank-you-egg) :nth-child(3) {
-    font-size: smaller;
-  }
-
-  .easter-egg-checkbox,
-  .easter-egg-overlay {
-    display: none !important;
-  }
-
-  footer:has(#thank-you-egg:hover) .footer-nav a {
-    opacity: 0;
-  }
-
-  footer:has(#thank-you-egg:hover) .easter-egg-gif {
-    opacity: 1;
-    pointer-events: auto;
-  }
-}
-
-#footer-right-side#thank-you-egg {
-  font-size: revert;
-}
-
-/***************************************************/
-/********** MEDIA QUERIES: MEDIUM (768px) *********/
-/***************************************************/
-
-@media screen and (min-width: 768px) {
-
-  /* Header grows larger */
-  #inkbus-main-header-image {
-    height: 20vh;
-  }
-
-  /* Navigation */
-  .inkbus-main-nav {
-    flex-direction: row;
-    gap: 2rem;
-    min-height: calc(100vh - 20vh - 150px);
-  }
-
-  .main-nav-btn {
-    max-width: 380px;
-    height: 35vh;
-  }
-
-  /* Show footer quote */
-  .footer-quote {
-    flex-direction: row;
-  }
-
-  .footer-quote p {
-    padding: 0 2px;
-  }
-
-  /* Footer becomes fixed at bottom */
-  footer {
-    padding: 5%;
-    flex-direction: row;
-    justify-content: space-around;
-  }
-
-}
-
-/***************************************************/
-/********** MEDIA QUERIES: Desktop (992px) **********/
-/***************************************************/
-
-@media screen and (min-width: 992px) {
-
-  /* Header at full desktop size */
-  #inkbus-main-header-image {
-    height: var(--header-height-desktop);
-  }
-
-  /* Navigation */
-  .inkbus-main-nav {
-    gap: 2.5rem;
-    max-width: 88%;
-    min-height: calc(100vh - var(--header-height-desktop) - 100px);
-  }
-
-  /* Switch to full-size images, hide mini */
-  .main-nav-btn.full-size {
-    display: block;
-  }
-
-  .main-nav-btn.mini-size {
-    display: none;
-  }
-
-  .main-nav-btn {
-    max-width: 400px;
-    height: 40vh;
-    width: auto;
-  }
-
-  /* Desktop hover effect: scale instead of brightness */
-  .main-nav-btn:hover,
-  .main-nav-btn:focus {
-    transform: scale(1.1);
-    filter: none;
-  }
-
-  /* Footer - Larger text on desktop */
-  footer {
-    font-size: 1.15em;
-    padding: 1.5rem 3rem;
-  }
-}
-
-/***************************************************/
-/********** MEDIA QUERIES: Large (1200px) **********/
-/***************************************************/
-
-@media screen and (min-width: 1200px) {
-
-  /* More spacing on large screens */
-  .inkbus-main-nav {
-    gap: 3rem;
-  }
-
-  .main-nav-btn {
-    max-width: 450px;
-  }
-}
-
-/***************************************************/
-/********* MEDIA QUERIES: X-Large (1750px) *********/
-/***************************************************/
-
-@media screen and (min-width: 1750px) {
-  #inkbus-main-header-image {
-    background-position-y: bottom;
-  }
-}
 
 /***************************************************/
 /********** CURATOR INSTAGRAM FEED ****************/
@@ -604,27 +908,16 @@ footer {
 
 /***************************************************/
 /*********** ABOUT US (aboutInkBus.html) ***********/
-/** (From Footer Nav of index.html & mobile.com) ***/
+/********** (Navigation Link on Footer Nav  ********/
+/******* of index.html & mobile.com) ***************/
 /***************************************************/
 
 /* Mobile-first base styles */
 
-/* About page specific body background */
-.main-background {
-  background: linear-gradient(to bottom, #020104, #6032c8);
-  background-attachment: fixed;
-  background-size: 100% 100%;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
 /* Main content container */
 .about-inkbus-main {
   display: grid;
-  grid-template-columns: 1fr;
-  /* Mobile: 1 column, stacked */
+  grid-template-columns: 1fr; 
   gap: 1.5rem;
   width: 100%;
   margin: 2em 0 21px 0;
@@ -633,8 +926,7 @@ footer {
 /* Image Gallery Section */
 .about-mini-gallery {
   display: grid;
-  grid-template-columns: 1fr;
-  /* Mobile: 1 column, stacked */
+  grid-template-columns: 1fr; 
   gap: 1.5rem;
   width: 80%;
   margin: 0 auto;
@@ -704,7 +996,6 @@ footer {
 /***************************************************/
 
 @media screen and (min-width: 768px) {
-  #inkbus-main-header-image {}
 
   about-inkbus-main {
     padding: 2rem;
@@ -721,8 +1012,7 @@ footer {
   }
 
   .main-about-img:active {
-    filter: none;
-    /* Remove mobile active state */
+    filter: none; /* Remove mobile active state */
   }
 
   .main-about-info h3 {
@@ -755,8 +1045,7 @@ footer {
   }
 
   .main-about-img {
-    max-width: 300px;
-    /* Constraint for larger screens */
+    max-width: 300px; /* Constraint for larger screens */
   }
 
   .main-about-info {
@@ -801,13 +1090,12 @@ footer {
     line-height: 1.9;
   }
 }
-
 /***************************************************/
 /********** MOBILE.HTML - NAVIGATION PAGE *********/
 /***************************************************/
 
 
-/* Background with gradient; shared with Mothership */
+/* Background with gradient; shared with Mothership */ 
 .mobile-background,
 .mothership-background {
   background: linear-gradient(to bottom, #020104, #6032c8);
@@ -815,8 +1103,7 @@ footer {
   background-size: 100% 100%;
   min-height: 100vh;
   display: grid;
-  grid-template-rows: auto 1fr auto;
-  /* Allows header, main, footer pattern */
+  grid-template-rows: auto 1fr auto; /* Allows header, main, footer pattern */
   max-width: 100vw;
   overflow-x: hidden;
 }
@@ -848,27 +1135,31 @@ footer {
 /* Main wrapper - automatically fills space between header and footer */
 .mobile-nav-items-main,
 .mothership-main {
-  position: relative;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-  place-items: center;
-  /* Replaces justify-content & align-items center */
-  width: 100%;
-  overflow: auto;
+   position: relative;
+   display: grid;
+   grid-template-columns: 1fr;
+   gap: 1rem;
+   place-items: center; /* Replaces justify-content & align-items center */
+   width: 100%;
+   overflow: auto;
 }
 
+#mobile-bus-main {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
 /* Grid navigation - Single column on mobile */
 .mobile-nav {
   display: grid;
-  grid-template-columns: 1fr;
-  /* Single column on mobile */
+  grid-template-columns: 1fr; /* Single column on mobile */
   gap: 1rem;
-  justify-content: center;
   align-items: center;
-  max-width: 55%;
   margin: auto;
   padding: 2rem 0;
+  max-width: 50vw;
+  justify-content: center;
 }
 
 /* Hide full-size images by default, show mini on mobile */
@@ -888,12 +1179,10 @@ footer {
 .mobile-nav-img {
   width: 100%;
   height: auto;
-  object-fit: cover;
-  /* Crop to fill if needed */
-  object-position: center;
-  /* Center the image in the crop */
+  object-fit: cover; /* Crop to fill if needed */
+  object-position: center; /* Center the image in the crop */
   transition: transform 0.3s ease-in-out, filter 0.3s ease;
-  border: var(--border-width) solid var(--grape);
+  border: var(--border-width) solid var(--grape); 
   border-radius: var(--border-radius);
   display: block;
 }
@@ -911,18 +1200,18 @@ footer {
 /* Tablet Portrait (576px+) - Start showing multiple columns */
 @media screen and (min-width: 576px) {
   .mobile-nav {
-    /* 2 columns */
-    gap: 1.2rem;
-    padding: 3rem 0;
-    grid-template-columns: repeat(2, 1fr);
-    max-width: 75%;
+     /* 2 columns */
+     gap: 1.2rem;
+     padding: 3rem 0;
+     grid-template-columns: repeat(2, 1fr);
+     max-width: 75%;
+     /* height: 75vh; */
   }
 
-  .mobile-nav :nth-child(10) {
+  .mobile-nav :nth-child(2) {
     grid-column: span 2;
-    justify-self: center;
-    /* Centers the item within its spanned area */
-    max-width: 50%;
+    justify-self: center; /* Centers the item within its spanned area */
+    max-width: 60%;
   }
 }
 
@@ -931,18 +1220,17 @@ footer {
   .inkbus-mobile-header-image {
     height: 20vh;
   }
-
+  
   .mobile-nav {
     grid-template-columns: repeat(5, 1fr);
     gap: 1.5rem;
-    min-height: calc(100vh - 20vh - 150px);
+    /* min-height: calc(100vh - 20vh - 150px); */
     max-width: 85%;
   }
-
-  .mobile-nav a:has(.full-size) {
+    .mobile-nav a:has(.full-size) {
     display: block;
   }
-
+  
   .mobile-nav a:has(.mini-size) {
     display: none;
   }
@@ -950,11 +1238,11 @@ footer {
 
 /* Desktop (992px+) - Switch to full-size images */
 @media screen and (min-width: 992px) {
-
+  
   .inkbus-mobile-header-image {
     height: var(--header-height-desktop);
   }
-
+  
   .mobile-nav {
     gap: 2rem;
     max-width: 80%;
@@ -963,7 +1251,7 @@ footer {
   .mobile-nav-img {
     aspect-ratio: 3 / 6;
   }
-
+  
   /* Desktop hover: scale effect */
   .mobile-nav-img:hover,
   .mobile-nav-img:focus {
@@ -976,6 +1264,7 @@ footer {
 @media screen and (min-width: 1200px) {
   .mobile-nav {
     gap: 3rem;
+    width: clamp(960px, 100%, 1080px);
   }
 }
 
@@ -986,7 +1275,7 @@ footer {
     width: 80%;
     margin: auto;
   }
-
+  
   .mobile-nav {
     min-height: auto;
     margin: auto;
@@ -1030,17 +1319,14 @@ hr.event-spacer {
 
 #flash-board {
   width: 100%;
-  max-width: 363px;
-  /* Match image natural width */
+  max-width: 363px; /* Match image natural width */
 }
 
 #flash-board img {
-  border: var(--border-width) solid var(--grape);
+  border: var(--border-width) solid var(--grape); 
   width: 100%;
-  height: auto;
-  /* Maintain aspect ratio */
-  max-height: 700px;
-  /* Cap at natural height */
+  height: auto; /* Maintain aspect ratio */
+  max-height: 700px; /* Cap at natural height */
 }
 
 /*****************************************************/
@@ -1144,7 +1430,6 @@ hr.event-spacer {
   max-width: 100%;
   height: auto;
 }
-
 /*****************************************************/
 /*************** End Flashboard Popup ****************/
 /*****************************************************/
@@ -1153,23 +1438,21 @@ hr.event-spacer {
 /************** Start Calendar Stylings **************/
 /*****************************************************/
 
-.mobile-calendar-float {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-}
+  .mobile-calendar-float {
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    width: 100%;
+  }
 
-.calendar-wrapper {
-  width: 100%;
-  max-width: 363px;
-  /* Match flash board max-width */
-  aspect-ratio: 363 / 685;
-  /* Match flash board aspect ratio */
-  position: relative;
-  border: var(--border-width) solid var(--grape);
-  border-radius: var(--border-radius);
-}
+  .calendar-wrapper {
+    width: 100%;
+    max-width: 363px; /* Match flash board max-width */
+    aspect-ratio: 363 / 685; /* Match flash board aspect ratio */
+    position: relative;
+    border: var(--border-width) solid var(--grape); 
+    border-radius: var(--border-radius);
+  }
 
 .calendar-wrapper iframe {
   position: absolute;
@@ -1186,7 +1469,7 @@ hr.event-spacer {
 /***********************************************/
 
 /***********************************************/
-/*** Small (sm): 576px  - Tablets portraits ***/
+/*** Small (sm): 576px  - Tablets portraits ***/ 
 /***********************************************/
 
 @media screen and (min-width: 576px) {
@@ -1196,7 +1479,7 @@ hr.event-spacer {
 }
 
 /***********************************************/
-/*** Medium (md): 768px  - Tablets landscape ***/
+/*** Medium (md): 768px  - Tablets landscape ***/ 
 /***********************************************/
 
 @media screen and (min-width: 768px) {
@@ -1208,7 +1491,7 @@ hr.event-spacer {
     display: block;
   }
 
-  #event-spacer-width {
+   #event-spacer-width {
     display: block;
     margin-top: 2em;
   }
@@ -1228,7 +1511,7 @@ hr.event-spacer {
 }
 
 /***********************************************/
-/*** Medium (md): 768px  - Tablets landscape ***/
+/*** Medium (md): 768px  - Tablets landscape ***/ 
 /***********************************************/
 
 @media screen and (min-width: 768px) {
@@ -1241,7 +1524,7 @@ hr.event-spacer {
   .mobile-contact-float h1 {
     font-size: 1.5em;
   }
-
+  
 }
 
 /***********************************************/
@@ -1260,18 +1543,16 @@ hr.event-spacer {
 /***************** 3 of 5 Menu Items *****************/
 /***************** on mobile.html ********************/
 /*****************************************************/
-
+  
 /* Mobile-first */
 
 .about-mobile-artist img {
   width: 80%;
   height: auto;
-  object-fit: cover;
-  /* Crop to fill if needed */
-  object-position: center;
-  /* Center the image in the crop */
+  object-fit: cover; /* Crop to fill if needed */
+  object-position: center; /* Center the image in the crop */
   transition: transform 0.3s ease-in-out, filter 0.3s ease;
-  border: var(--border-width) solid var(--grape);
+  border: var(--border-width) solid var(--grape); 
   border-radius: var(--border-radius);
   margin: 1.5rem auto;
 }
@@ -1292,8 +1573,7 @@ hr.event-spacer {
   align-items: center;
 }
 
-hr,
-.lower {
+hr, .lower {
   border: none;
   height: 5px;
   background-color: var(--magenta);
@@ -1306,12 +1586,10 @@ hr,
   margin: 0 auto;
 }
 
-.mobile-calendar-insta>div>div>div>div>article {
+.mobile-calendar-insta > div > div > div > div > article {
   height: auto;
-  object-fit: cover;
-  /* Crop to fill if needed */
-  object-position: center;
-  /* Center the image in the crop */
+  object-fit: cover; /* Crop to fill if needed */
+  object-position: center; /* Center the image in the crop */
   transition: transform 0.3s ease-in-out, filter 0.3s ease;
   border: var(--border-width) solid var(--grape) !important;
   border-radius: var(--border-radius);
@@ -1353,15 +1631,14 @@ hr,
 /***********************************************/
 /**** Small (sm):  576px  - Tablets portrait ***/
 /***********************************************/
-@media screen and (min-width: 576px) {
-  .mobile-nav-items-main {
-    max-width: 70%;
-    margin: 0 auto;
+  @media screen and (min-width: 576px) {
+    .mobile-nav-items-main {
+      max-width: 70%;
+      margin: 0 auto;
   }
 }
-
 /***********************************************/
-/*** Medium (md): 768px  - Tablets landscape ***/
+/*** Medium (md): 768px  - Tablets landscape ***/ 
 /***********************************************/
 
 @media screen and (min-width: 768px) {
@@ -1369,10 +1646,10 @@ hr,
     max-width: 90%;
   }
 
-  .mobile-about-float {
+  .mobile-about-float  {
     margin-top: 2em;
   }
-
+  
   .about-mobile-artist {
     display: grid;
     grid-template-columns: 60% auto 30%;
@@ -1382,36 +1659,32 @@ hr,
   .about-mobile-artist img {
     width: 70%
   }
-
+  
   hr {
-    display: none;
+    display: none; 
   }
-
+  
   hr.vertical {
     width: 5px;
     height: 100%;
     display: block;
     margin-top: 2vh;
   }
-
+  
   #mobile-about-galleries-nav {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    gap: 1rem;
-    /* Add spacing between buttons */
+    gap: 1rem; /* Add spacing between buttons */
     margin-top: 2em;
   }
-
+  
   #mobile-about-galleries-nav a img {
-    width: 100%;
-    /* Override the 80% */
-    height: auto;
-    /* Explicit for aspect-ratio */
+    width: 100%; /* Override the 80% */
+    height: auto; /* Explicit for aspect-ratio */
     aspect-ratio: 3/4;
     object-fit: fill;
-    margin: 0;
-    /* Override the 1.5rem auto margin */
+    margin: 0; /* Override the 1.5rem auto margin */
   }
 }
 
@@ -1423,7 +1696,6 @@ hr,
   #mobile-about-galleries-nav {
     width: clamp(324px, 100%, 324px);
   }
-
   .mobile-about-image-container {
     width: clamp(649px, 100%, 649px);
   }
@@ -1436,8 +1708,8 @@ hr,
 /*****************************************************/
 
 .mobile-nav-items-main iframe {
-  max-width: 100%;
-  aspect-ratio: 16 / 9;
+    max-width: 100%;
+    aspect-ratio: 16 / 9;
 }
 
 #mobile-innerP-info p {
@@ -1489,16 +1761,16 @@ hr,
 /***********************************************/
 /**** Small (sm):  576px  - Tablets portrait ***/
 /***********************************************/
-@media screen and (min-width: 576px) {
-  .mobile-services-main {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  @media screen and (min-width: 576px) {
+    .mobile-services-main {
+      grid-template-columns: repeat(2, 1fr);
+    }
 
-  .mobile-services-list-container {
-    width: 65%;
-    margin: 0 auto;
-    align-items: flex-start
-  }
+    .mobile-services-list-container {
+      width: 65%;
+      margin: 0 auto;
+      align-items: flex-start
+    }
 }
 
 /***********************************************/
@@ -1507,7 +1779,7 @@ hr,
 
 @media screen and (min-width: 992px) {
   .mobile-services-main {
-    grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(4, 1fr);
   }
 
   .mobile-services-info {
@@ -1534,7 +1806,9 @@ hr,
 /**** Large (lg):   1200px - Large desktops ****/
 /***********************************************/
 
-@media screen and (min-width: 1200px) {}
+@media screen and (min-width: 1200px) {
+  
+}
 
 
 /*****************************************************/
@@ -1561,8 +1835,7 @@ hr,
 }
 
 .lightbox {
-  display: none;
-  /* Hidden by default */
+  display: none; /* Hidden by default */
   position: fixed;
   top: 0;
   left: 0;
@@ -1587,7 +1860,7 @@ hr,
   font-size: 2rem;
   color: var(--white);
   background-color: var(--grape);
-  border: var(--border-width) solid var(--grape);
+  border: var(--border-width) solid var(--grape); 
   border-radius: 14px;
   padding: 10px 15px;
   cursor: pointer;
@@ -1601,14 +1874,14 @@ hr,
 /***********************************************/
 /**** Small (sm):  576px  - Tablets portrait ***/
 /***********************************************/
-@media screen and (min-width: 576px) {
-  .gallery {
-    grid-template-columns: repeat(3, 1fr);
+  @media screen and (min-width: 576px) {
+    .gallery {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
-}
 
 /***********************************************/
-/*** Medium (md): 768px  - Tablets landscape ***/
+/*** Medium (md): 768px  - Tablets landscape ***/ 
 /***********************************************/
 
 @media screen and (min-width: 768px) {
@@ -1648,31 +1921,25 @@ hr,
   margin: 2em auto;
   justify-content: center;
 }
-
 #mothership-flyer-container picture {
-  position: relative;
-  /* Makes picture the positioning parent */
-  display: block;
-  /* Removes any inline spacing */
+  position: relative; /* Makes picture the positioning parent */
+  display: block; /* Removes any inline spacing */
 }
 
 #mothership-flyer-container img {
-  display: block;
-  /* Removes bottom gap under image */
-  width: 100%;
-  /* Ensures image fills container */
+  display: block; /* Removes bottom gap under image */
+  width: 100%; /* Ensures image fills container */
 }
 
 #mothership-contact-link {
   position: absolute;
   display: flex;
   align-items: center;
-  bottom: 0;
-  /* Sits at the bottom of the picture */
+  bottom: 0; /* Sits at the bottom of the picture */
   left: 12.5%;
   width: 75%;
   text-align: center;
-  background: var(--lt-lavender);
+  background: var(--dk-lavender);
   text-decoration: none;
   font-weight: bold;
   padding: 3px;
@@ -1718,9 +1985,9 @@ hr,
 /***********************************************/
 /**** Small (sm):  576px  - Tablets portrait ***/
 /***********************************************/
-@media screen and (min-width: 576px) {
-  #mothership-flyer-container {
-    width: 55%;
+  @media screen and (min-width: 576px) {
+    #mothership-flyer-container {
+      width: 55%;
   }
 
   #mothership-video-container {
@@ -1730,7 +1997,7 @@ hr,
 }
 
 /***********************************************/
-/*** Medium (md): 768px  - Tablets landscape ***/
+/*** Medium (md): 768px  - Tablets landscape ***/ 
 /***********************************************/
 
 @media screen and (min-width: 768px) {
@@ -1766,10 +2033,9 @@ hr,
   }
 
   .side-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    /* or 'cover' depending on your preference */
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* or 'cover' depending on your preference */
   }
 }
 
@@ -1792,7 +2058,7 @@ hr,
 @media screen and (min-width: 1200px) {
 
   #mothership-images-container {
-    width: clamp(1080px, 100%, 1080px)
+    width: clamp(1080px, 100%, 1080px) 
   }
 
   .video-with-images {

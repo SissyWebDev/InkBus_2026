@@ -26,7 +26,14 @@
     
     <a href="../../index.html">
       
-      <header id="inkbus-main-header-image"></header>
+          <header id="inkbus-main-header-image" role="banner">
+      <h1 id="landing-display-font">
+        <img src="../../assets/fonts/INKBUS-Title.png" alt="INKBUS Decrotive Title-Highbinder">
+      </h1>
+      <p id="landing-subtitle">
+        <img src="../../assets/fonts/TATTOO-Subtitle.png" alt="TATTOO Decrotive Subtitle-Lulo One">
+      </p>
+    </header>
       
     </a>
     
@@ -135,50 +142,51 @@
       
     </main>
     
-    <footer role="contentinfo">
+      <footer class="footer-nav-variant"  role="contentinfo">
     
-      <section id="footer-left-side">
-        
-        <p>&copy; INKBUS TATTOO 2025</p>
-        <p>Portland, OR</p>
-        
-      </section>
+    <section class="footer-left-side">
       
-      <nav class="footer-nav" aria-label="Footer navigation">
-        
-        <a href="../mobile/mobile.html">INKBUS Mobile</a>
-        <a href="../../pages/main/aboutInkBus.html">About INKBUS</a>
-        
-        <!-- Easter Egg GIF (Desktop hover) -->
-        <div class="easter-egg-gif" role="easter-egg">
-          
-          <img src="../../assets/images/animal-friends-party.gif" alt="Party time!">
-          
-        </div>
-        
-      </nav>
+      <p>&copy; INKBUS TATTOO 2025</p>
+      <p>Portland, OR</p>
+      
+    </section>
     
-      <section id="footer-right-side">
+    <nav id="footer-nav-styles" aria-label="Footer navigation">
       
-        <!-- Hidden checkbox for mobile toggle -->
-        <input type="checkbox" id="easter-egg-toggle" class="easter-egg-checkbox">
+      <a href="../mobile/mobile.html">INKBUS Mobile</a>
+      <a href="../../pages/main/aboutInkBus.html"> About INKBUS</a>
+      
+      <!-- Easter Egg GIF (Desktop hover) -->
+      <div class="easter-egg-gif" role="easter-egg">
         
-        <!-- Label acts as the clickable link on mobile, regular link on desktop -->
-        <label for="easter-egg-toggle" id="thank-you-egg" aria-current="page">Thank You!</label>
-        
-        <a href="mailto:info@inkbustattoo.com" aria-label="Email INKBUS Tattoo">info@inkbustattoo.com</a>
-  
-        <!-- Mobile fullscreen overlay -->
-        <div class="easter-egg-overlay">
-        <label for="easter-egg-toggle" class="easter-egg-close" aria-label="Close">
-          <i class="fa-solid fa-circle-xmark"></i>
-        </label>
         <img src="../../assets/images/animal-friends-party.gif" alt="Party time!">
-        </div>
+        
+      </div>
       
-      </section>
+    </nav>
     
-    </footer>
+    <section class="footer-right-side">
+      
+      <!-- Hidden checkbox for mobile toggle -->
+      <input type="checkbox" id="easter-egg-toggle" class="easter-egg-checkbox">
+      
+      <!-- Label acts as the clickable link on mobile, regular link on desktop -->
+      <label for="easter-egg-toggle" id="thank-you-egg" aria-current="page">Thank You!</label>
+      
+      <a href="mailto:info@inkbustattoo.com" aria-label="Email INKBUS Tattoo">info@inkbustattoo.com</a>
+
+      <!-- Mobile fullscreen overlay -->
+      <div class="easter-egg-overlay">
+      <label for="easter-egg-toggle" class="easter-egg-close" aria-label="Close">
+        <i class="fa-solid fa-circle-xmark"></i>
+      </label>
+      <img src="../../assets/images/animal-friends-party.gif" alt="Party time!">
+    </div>
+      
+    </section>
+    
+  </footer>
+
 
   </body>
 </html>

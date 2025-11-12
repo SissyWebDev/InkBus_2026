@@ -24,14 +24,17 @@
   <body class="main-background">
     
     <!-- Header with background image -->
-    <header 
-      
-      id="inkbus-main-header-image" role="banner">
-      
+    <header id="inkbus-main-header-image" role="banner">
+      <h1 id="landing-display-font">
+        <img src="../assets/fonts/INKBUS-Title.png" alt="INKBUS Decrotive Title-Highbinder">
+      </h1>
+      <p id="landing-subtitle">
+        <img src="../assets/fonts/TATTOO-Subtitle.png" alt="TATTOO Decrotive Subtitle-Lulo One">
+      </p>
     </header>
 
     <!-- Main navigation -->
-    <main>
+    <main id="landing-main">
       <nav class="inkbus-main-nav" role="navigation" aria-label="Main navigation">
         <a href="pages/mobile/mobile.html" aria-label="Visit INKBUS Mobile tattoo studio">
           <img
@@ -53,7 +56,7 @@
         </a>
         <a href="pages/mothership/mothership.html" aria-label="Visit INKBUS Mothership permanent studio">
           <img
-            class="main-nav-btn full-size"
+            class="main-nav-btn full-size spin-on-bump"
             src="https://res.cloudinary.com/diyrbemqw/image/upload/v1707758367/inkbus-tattoo-main/HomeMomShipButton_jmggdg.webp"
             alt="INKBUS Mothership - Our permanent tattoo studio location"
             loading="lazy"
@@ -61,7 +64,7 @@
             height="400"
           />
           <img
-            class="main-nav-btn mini-size"
+            class="main-nav-btn mini-size spin-on-bump"
             src="https://res.cloudinary.com/diyrbemqw/image/upload/c_scale,e_improve,h_200,q_auto:good,w_200/v1707758367/inkbus-tattoo-main/HomeMomShipButton_jmggdg.webp"
             alt="INKBUS Mothership - Our permanent tattoo studio location"
             loading="lazy"
@@ -73,8 +76,19 @@
     </main>
 
     <!-- Footer -->
-    <footer role="contentinfo">
-      <section id="footer-left-side">
+    <footer class="footer-quote-variant" role="contentinfo">
+      
+      <div class="markoon-container">
+        <img 
+          class="markoon-runner" 
+          src="../assets/images/TransparentBigDaddyMarkoon-R.png" 
+          alt="" 
+          aria-hidden="true"
+          loading="lazy"
+        />
+      </div>
+      
+      <section class="footer-left-side">
         <p>&copy; INKBUS TATTOO 2025</p>
         <p>Portland, OR</p>
       </section>
@@ -82,7 +96,7 @@
         <p>Make A Lasting</p>
         <p>Impression!</p>
       </section>
-      <section id="footer-right-side">
+      <section class="footer-right-side">
         <a id="about-page-link" href="pages/main/aboutInkBus.html">ABOUT INKBUS</a>
         <a href="mailto:info@inkbustattoo.com" aria-label="Email INKBUS Tattoo">info@inkbustattoo.com</a>
       </section>
