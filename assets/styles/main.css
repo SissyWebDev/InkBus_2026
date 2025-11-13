@@ -678,7 +678,7 @@ footer {
   width: clamp(120px, 25vw, 150px); /* Responsive sizing */
   height: auto;
   will-change: transform;
-  animation: markoon-journey 3.75s linear 1;
+  animation: markoon-journey 4s linear 1;
   border: none;
   margin-bottom: 21px;
   opacity: 0;
@@ -733,7 +733,7 @@ footer {
 
 /* Button spin animation - triggered by Markoon's hand */
 .main-nav-btn.spin-on-bump {
-  animation: button-spin-mobile 4s ease-in-out 1;
+  animation: button-spin-mobile 4.267s ease-in-out 1;
   transform-origin: center center;
 }
 
@@ -762,12 +762,12 @@ footer {
   }
 }
 
-@media screen and (min-width: 992px) {
+@media screen and (min-width: 768px) {
     .markoon-runner {
     animation: markoon-journey 4.25s linear 1;
     }
   
-    /* Journey animation: right to left, flip, left to right */
+    /* Journey animation: right to left, flip, left to right*/ 
     @keyframes markoon-journey {
       0% {
         left: 100%;
@@ -776,17 +776,17 @@ footer {
       }
       
       46% {  
-        left: -30vw; /* Fully off-screen left */
+        left: -30vw; /* Fully off-screen left*/ 
         transform: translateX(0) scaleX(1);
       }
       
       46.1% {
         left: -30vw;
-        transform: translateX(0) scaleX(-1); /* Flip instantly */
+        transform: translateX(0) scaleX(-1); /* Flip instantly*/ 
       }
       
       69% {  
-        left: -30vw; /* Stay paused */
+        left: -30vw; /* Stay paused*/ 
         transform: translateX(0) scaleX(-1);
       }
       
@@ -802,32 +802,33 @@ footer {
       }
     }
     
-    /* Button spin animation - triggered by Markoon's hand */
+    /* Button spin animation - triggered by Markoon's hand*/ 
     .main-nav-btn.spin-on-bump {
       animation: button-spin-mobile 4.53s ease-in-out 1;
     }
     
-    /* Mobile: flat spin (rotateZ) */
+    /* Mobile: flat spin (rotateZ)*/ 
     @keyframes button-spin-mobile {
       0%, 81% {
         transform: rotate(0deg);
       }
       
       83% {
-        transform: rotate(0deg); /* Moment of contact */
+        transform: rotate(0deg); /* Moment of contact*/ 
       }
       
       90% {
-        transform: rotate(1800deg); /* 3 full spins (360deg × 5) */
+        transform: rotate(1800deg); /* 5 full spins (360deg × 5)*/ 
       }
       
       100% {
-        transform: rotate(1080deg); /* Hold */
+        transform: rotate(1080deg); /* Hold*/ 
       }
     }
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 992px) {
+
     .markoon-runner {
     animation: markoon-journey 4.5s linear 1;
     }
@@ -868,7 +869,72 @@ footer {
     
     /* Button spin animation - triggered by Markoon's hand */
     .main-nav-btn.spin-on-bump {
-      animation: button-spin-mobile 5s ease-in-out 1;
+      animation: button-spin-mobile 4.793s ease-in-out 1;
+    }
+    
+    /* Mobile: flat spin (rotateZ) */
+    @keyframes button-spin-mobile {
+      0%, 81% {
+        transform: rotate(0deg);
+      }
+      
+      83% {
+        transform: rotate(0deg); /* Moment of contact */
+      }
+      
+      90% {
+        transform: rotate(1800deg); /* 3 full spins (360deg × 5) */
+      }
+      
+      100% {
+        transform: rotate(1080deg); /* Hold */
+      }
+    }
+}
+
+@media screen and (min-width: 1200px) {
+
+    .markoon-runner {
+    animation: markoon-journey 5s linear 1;
+    }
+    /* Journey animation: right to left, flip, left to right */
+    @keyframes markoon-journey {
+      0% {
+        left: 100%;
+        transform: translateX(0) scaleX(1);
+        opacity: 1;
+      }
+      
+      46% {  
+        left: -30vw; /* Fully off-screen left */
+        transform: translateX(0) scaleX(1);
+      }
+      
+      46.1% {
+        left: -30vw;
+        transform: translateX(0) scaleX(-1); /* Flip instantly */
+      }
+      
+      69% {  
+        left: -30vw; /* Stay paused */
+        transform: translateX(0) scaleX(-1);
+      }
+      
+      85% {  
+        left: 50%;
+        transform: translateX(-50%) scaleX(-1);
+      }
+      
+      100% {  
+        left: 100%;
+        transform: translateX(0) scaleX(-1);
+        opacity: 1;
+      }
+    }
+    
+    /* Button spin animation - triggered by Markoon's hand */
+    .main-nav-btn.spin-on-bump {
+      animation: button-spin-mobile 5.53s ease-in-out 1;
     }
     
     /* Mobile: flat spin (rotateZ) */
