@@ -6,6 +6,282 @@
   <meta name="description" content="INKBUS Tattoo - Portland's premier mobile tattoo studio featuring our iconic purple bus and new Mothership location. Professional custom tattoos and event services.">
   <title>INKBUS Tattoo - Portland's Purple Bus Mobile Tattoo Studio</title>
   
+  <style>
+    .main-background {
+      background: linear-gradient(to bottom, #020104, #6032c8);
+      background-attachment: fixed;
+      min-height: 100dvh; /*dynamic view height: adjusts automatically to various obstacles on smart phone viewports*/
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header with sticky positioning */
+    #inkbus-main-header-image {
+      display: flex;
+      flex-direction: column;
+      background-image: url('../../assets/images/InkBus-Header-Background.png');
+      background-repeat: no-repeat;
+      background-size: auto 100%;
+    }
+
+    #inkbus-main-header-image h1 img {
+      border: none;
+      padding:.5rem
+    }
+
+    #inkbus-main-header-image p img {
+      border: none;
+      width: 47vw;
+      padding-bottom: .5rem
+    }
+
+    /* Header images (logo, subtitle) */
+    #header-title,
+    #header-subtitle {
+      width: auto;
+      max-width: 90%;
+    }
+
+    #inkbus-main-header-image::after {
+      content: '';
+      display: block;
+      height: 21px; /* 3 stripes × 7px each */
+      background: linear-gradient(
+        to bottom,
+        var(--lavender) 0px, var(--lavender) 7px,
+        var(--grape) 7px, var(--grape) 14px,
+        var(--lavender) 14px, var(--lavender) 21px
+      );
+      width: 100%;
+    }
+
+    #landing-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 0; /*CRITICAL - allows flex item to shrink on difficult mobile viewports */
+      overflow: hidden; /*Prevents overflow */
+    }
+
+    /* Main Navigation Container */
+    .inkbus-main-nav {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(0.5rem, 2vh, 1.5rem);  
+      margin: .5rem auto;
+      max-height: 100%; /* Keeps nav within main bounds */
+    }
+
+    /* Navigation buttons (images) */
+    .main-nav-btn {
+      width: 100%;
+      max-width: min(50vw, 400px); /* Never exceeds viewport width */
+      height: auto;
+      transition: transform 0.3s ease-in-out, filter 0.3s ease;
+      border: var(--border-width) solid var(--grape); 
+      border-radius: var(--border-radius);
+    }
+
+    /* Mobile: Show mini images, hide full-size */
+    .main-nav-btn.full-size {
+      display: none;
+    }
+
+    .main-nav-btn.mini-size {
+      display: block;
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 21px;
+      background: linear-gradient(
+        to bottom,
+        var(--lavender) 0px,
+        var(--lavender) 7px,
+        var(--grape) 7px,
+        var(--grape) 14px,
+        var(--lavender) 14px,
+        var(--lavender) 21px
+      );
+    }
+
+    footer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      width: 100%;
+      background-color: var(--black);
+      color: var(--white);
+      padding: 1rem;
+      font-size: 1em;
+      line-height: 1;
+      position: sticky;
+      bottom: 0;
+      position: relative; /* Creates positioning context for ::before */
+      padding-top: calc(1rem + 21px); /* Makes room for the 21px stripes */
+    }
+
+    .footer-quote {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .footer-quote p {
+      color: var(--magenta);
+      font-weight: 700;
+      font-style: italic;
+      white-space: nowrap; /* Prevents wrapping */
+    }
+
+    @media screen and (max-width: 376px) {
+  
+      main nav {
+        width: 100%;
+        max-width: 174px; /* Constrains on larger screens */
+        gap: 1rem; /* Space between the two images */
+        display: flex;
+        flex-direction: column;
+      }
+      
+      main nav img {
+        width: 100%;
+        height: auto;
+      }
+      
+    }
+
+    @media screen and (min-width: 576px) {
+  
+      /* Navigation - Start showing side-by-side layout*/
+      .inkbus-main-nav {
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        max-width: 95%; /* Constrain width on tablets*/ 
+      }
+
+      #inkbus-main-header-image p img {
+        width: auto;
+      }
+      
+      .main-nav-btn {
+        max-width: 350px;
+        height: auto; /* Let image determine height */
+        max-height: 35vh; /* Cap maximum but don't force */
+        object-fit: contain; /* Preserve aspect ratio */
+      }
+
+      footer {
+        flex-direction: row;
+        padding-top: calc(clamp(0.75rem, 2.75rem - 0.17vw, 1.75rem) + 21px);
+        font-size: clamp(1.15rem, 1rem + 0.3vw, 1.375rem);
+        gap: 1.25rem;
+      }
+
+        .footer-quote {
+          flex-direction: row;
+          flex: 1;
+          align-items: center;
+          gap: 0;
+        }
+        
+        .footer-quote p {
+          font-size: clamp(1.25rem, 0.5rem + 1.3vw, 2.5rem);
+          line-height: 1;
+          margin: 0;
+          padding: 0;
+          flex: 1;
+          display: flex;
+          align-items: center;
+        }
+        
+        .footer-quote :nth-of-type(1) {
+          justify-content: flex-end;
+        }
+        
+        .footer-quote :nth-of-type(2) {
+          justify-content: flex-start;
+          /* Kerning grows with the massive font */
+          padding-left: clamp(0.375rem, 0.1rem + 0.5vw, 1rem);
+        }
+    }
+
+    @media screen and (min-width: 768px) {
+  
+      /* Navigation */
+      .inkbus-main-nav {
+        flex-direction: row;
+        gap: 2rem;
+        flex-wrap: nowrap;
+      }
+      
+      .main-nav-btn {
+        max-width: 380px;
+        height: auto; /* Let image determine height */
+        max-height: 40vh; /* Cap maximum */
+        object-fit: contain;
+      }
+
+      .main-nav-btn.full-size {
+        display: block;
+      }
+      
+      .main-nav-btn.mini-size {
+        display: none;
+      }
+    }
+
+    @media screen and (min-width: 992px) {
+        
+      /* Navigation */
+      .inkbus-main-nav {
+        gap: 2.5rem;
+        max-width: 88%;
+      }
+      
+      /* Switch to full-size images, hide mini */
+
+      .main-nav-btn {
+        max-width: 400px;
+        width: auto;
+      }
+      
+      /* Desktop hover effect: scale instead of brightness */
+      .main-nav-btn:hover,
+      .main-nav-btn:focus {
+        transform: scale(1.1);
+        filter: none;
+      }
+    }
+
+    @media screen and (min-width: 1200px) {
+  
+      /* More spacing on large screens*/
+      .inkbus-main-nav {
+        gap: 3rem;
+      }
+      
+      .main-nav-btn {
+        max-width: 450px;
+      }
+    }
+
+    @media screen and (min-width: 1750px) {
+      #inkbus-main-header-image {
+      background-position-y: bottom;
+      }
+    }
+  </style>
   <!-- Stylesheets -->
   <link rel="stylesheet" href="assets/styles/reset.css">
   <link rel="stylesheet" href="assets/styles/main.css">
@@ -47,7 +323,7 @@
           />
           <img
             class="main-nav-btn mini-size"
-            src="../assets/images/HomePageMobileButton800x.webp"
+            src="../assets/images/HomePageMobileButton185x.webp"
             alt="INKBUS Mobile - Markoon relaxing in front of the original INKBUS in India"
             loading="lazy"
             width="200"
@@ -65,7 +341,7 @@
           />
           <img
             class="main-nav-btn mini-size spin-on-bump"
-            src="../assets/images/HomeMomShipButton800x.webp"
+            src="../assets/images/HomeMomShipButton185x.webp"
             alt="INKBUS Mothership - Our permanent tattoo studio location"
             loading="lazy"
             width="200"
