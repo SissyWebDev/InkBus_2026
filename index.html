@@ -8,7 +8,7 @@
     content="INKBUS Tattoo - Portland's premier mobile tattoo studio featuring our iconic purple bus and new Mothership location. Professional custom tattoos and event services.">
   <title>INKBUS Tattoo - Portland's Purple Bus Mobile Tattoo Studio</title>
 
-  <!-- Crital CSS -->
+  <!-- Critical CSS -->
   <style>
     .main-background {
       background: linear-gradient(to bottom, #020104, #6032c8);
@@ -313,6 +313,17 @@
     // Update on resize and orientation change
     window.addEventListener('resize', setViewportHeight);
     window.addEventListener('orientationchange', setViewportHeight);
+
+	// Prevent spin animation from running more than once
+	setTimeout(function() {
+	  // Get both full and mini buttons with spin-on-bump class 
+	  const buttons = document.querySelectorAll('.spin-on-bump');
+  
+	  buttons.forEach(function(button) {
+	    button.style.animation = 'none'; // ← Changed from ''
+	    button.style.transform = 'rotate(1080deg)'; // ← Added this line
+	  });
+	}, 7000);
   </script>
 
   <!-- PRELOAD animation CSS with high priority -->

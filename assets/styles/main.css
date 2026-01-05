@@ -103,7 +103,7 @@ a:hover {
 /***************************************************/
 
 html body.main-background {
-  overflow-x: hidden;
+  overflow-x: clip
   scrollbar-width: none;
   /* Firefox */
   -ms-overflow-style: none;
@@ -538,6 +538,10 @@ footer {
 
 /* Mobile-first base styles */
 
+#inkbus-about-header-hover:hover {
+  filter: brightness(120%);
+}
+
 /* Main content container */
 .about-inkbus-main {
   display: grid;
@@ -733,7 +737,7 @@ footer {
   grid-template-rows: auto 1fr auto;
   /* Allows header, main, footer pattern */
   max-width: 100vw;
-  overflow-x: hidden;
+  overflow-x: clip
 }
 
 /* Clickable header with background image */
@@ -847,6 +851,16 @@ footer {
     /* Centers the item within its spanned area */
     max-width: 60%;
   }
+  
+  /* Desktop hover: scale effect */
+  .mobile-nav-img:hover,
+  .mobile-nav-img:focus {
+	  transition: all .3s;
+	  border-bottom-left-radius: 0;
+	  border-top-right-radius: 0;
+	  border-bottom-right-radius: 35px;
+	  border-top-left-radius: 35px;
+  }
 }
 
 /* Tablet Landscape (768px+) */
@@ -885,13 +899,6 @@ footer {
 
   .mobile-nav-img {
     aspect-ratio: 3 / 6;
-  }
-
-  /* Desktop hover: scale effect */
-  .mobile-nav-img:hover,
-  .mobile-nav-img:focus {
-    transform: scale(1.05);
-    filter: brightness(110%);
   }
 }
 
